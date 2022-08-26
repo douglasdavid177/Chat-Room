@@ -11,7 +11,7 @@ export default function Home() {
           alt="An SVG of people socializing"
           className={styles.heroimg}
         />
-        <h1 className="rightTextAlign">Welcome to David's Party Room!</h1>
+        <h1 className="rightTextAlign">Welcome to David&apos;s Party Room!</h1>
 
         <h4 className={"leftMessage"}>
           ...A virtual public chatroom that updates in real-time! <br />
