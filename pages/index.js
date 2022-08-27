@@ -1,31 +1,73 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [user, setUser] = useState("");
+  const subheadingAnimDur = 0.65;
   return (
     <div className={"container"}>
       <div className={"content"}>
-        <img
-          src="/partysvg.svg"
-          alt="An SVG of people socializing"
-          className={"heroimg"}
-        />
-        <h1>Welcome to David&apos;s Party Room!</h1>
+        <motion.div
+          initial={{ translateY: -50, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{
+            // duration: 0.75,
+            duration: 0,
+            // ease: [0.1, 0.1, 0, 1],
+          }}
+        >
+          <img
+            src="/partysvg.svg"
+            alt="An SVG of people socializing"
+            className={"heroimg"}
+          />
+        </motion.div>
 
-        <h4 className={"leftMessage"}>
+        <h1>Welcome to David&apos;s Party Room!</h1>
+        <motion.h4
+          className={"leftMessage"}
+          initial={{ translateX: -30, opacity: 0 }}
+          animate={{ translateX: 0, opacity: 1 }}
+          transition={{ duration: subheadingAnimDur, ease: [0.1, 0.1, 0, 1] }}
+        >
           ...A virtual public chatroom that updates in real-time! <br />
-        </h4>
+        </motion.h4>
         {/* <h3 className="rightTextAlign">
           Please be kind to each other ;) <br />
           This project was built with NextJS and Firebase.
         </h3> */}
-        <h4 className="rightTextAlign rightMessage">
+        <motion.h4
+          className="rightTextAlign rightMessage"
+          initial={{ translateX: 30, opacity: 0 }}
+          animate={{ translateX: 0, opacity: 1 }}
+          transition={{ duration: subheadingAnimDur, ease: [0.1, 0.1, 0, 1] }}
+        >
           Please be kind to each other ;) {/* <br /> */}
           Mean messages can get you banned...
-        </h4>
+        </motion.h4>
         <div className={"buttonWrapper"}>
-          <button className={"primaryBtn"}>Enter chat room</button>
-          <button>View another page</button>
+          <motion.div
+            initial={{ translateY: 40, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: subheadingAnimDur / 4,
+              ease: [0.1, 0.1, 0, 1],
+            }}
+          >
+            <button className={"primaryBtn"}>Enter chat room</button>
+          </motion.div>
+          <motion.div
+            initial={{ translateY: 50, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: subheadingAnimDur / 4 + 0.1,
+              ease: [0.1, 0.1, 0, 1],
+            }}
+          >
+            <button> View another page</button>
+          </motion.div>
         </div>
 
         {/* {user ? <MessageBoard /> : <PlaceholderBoard />} */}
@@ -66,6 +108,7 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           padding-top: 1.5rem;
+          align-items: flex-end;
         }
 
         h1 {
@@ -81,9 +124,9 @@ export default function Home() {
           color: white;
           width: auto;
           min-width: 10rem;
-          min-width: 11.2rem;
+          min-width: 12rem;
           border: 3px solid white;
-          border-radius: 2rem;
+          border-radius: 200rem;
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
           align-self: end;
@@ -97,6 +140,9 @@ export default function Home() {
         .buttonWrapper button.primaryBtn {
           background-color: var(--main-purple);
           border: none;
+        }
+        .buttonWrapper button:active {
+          font-weight: 800;
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
