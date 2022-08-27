@@ -96,7 +96,7 @@ export default function Home() {
           max-height: 26vh;
           aspect-ratio: 1/1;
           border: 3px solid white;
-          border-radius: 50% 50%;
+          border-radius: 500rem 500rem;
           margin-top: 3.5rem;
           margin-bottom: 0.5rem;
         }
