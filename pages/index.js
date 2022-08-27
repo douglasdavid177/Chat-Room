@@ -20,51 +20,53 @@ export default function Home() {
           className={"heroimg"}
         />
         {/* </motion.div> */}
-
-        <h1>Welcome to David&apos;s Party Room!</h1>
-        <motion.h4
-          className={"leftMessage"}
-          initial={{ translateX: -100, opacity: 0 }}
-          animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 0.65, ease: [0.1, 0.1, 0, 1] }}
-        >
-          ...A virtual public chatroom that updates in real-time! <br />
-        </motion.h4>
-        {/* <h3 className="rightTextAlign">
-          Please be kind to each other ;) <br />
-          This project was built with NextJS and Firebase.
-        </h3> */}
-        <motion.h4
+        <h1>David&apos;s Uber-Exclusive VIP Chat Room!</h1>
+        <motion.div
           className="rightTextAlign rightMessage"
           initial={{ translateX: 100, opacity: 0 }}
           animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 0.65, ease: [0.1, 0.1, 0, 1] }}
+          transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
         >
-          Please be kind to each other ;) {/* <br /> */}
-          Mean messages can get you banned...
-        </motion.h4>
+          <h3>
+            ...A virtual public chat room that updates in real time!
+            <br />
+          </h3>
+        </motion.div>
+        <motion.div
+          className={"leftMessage"}
+          initial={{ translateX: -100, opacity: 0 }}
+          animate={{ translateX: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
+        >
+          <h3>
+            ...Please be kind! {/* &#128527;  */}
+            {/* <br /> */}
+            Mean messages can get you banned...
+          </h3>
+        </motion.div>
+
         <div className={"buttonWrapper"}>
           <motion.div
             initial={{ translateY: 40, opacity: 0 }}
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
-              duration: 1,
+              duration: 0.7,
               delay: 0.25,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
-            <button className={"primaryBtn"}>Enter chat room</button>
+            <button>Enter chat room</button>
           </motion.div>
           <motion.div
             initial={{ translateY: 50, opacity: 0 }}
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
-              duration: 1,
+              duration: 0.7,
               delay: 0.25 + 0.1,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
-            <button> View another page</button>
+            <button className={"linkBtn"}> View menu</button>
           </motion.div>
         </div>
 
@@ -91,60 +93,84 @@ export default function Home() {
 
         .heroimg {
           align-self: center;
-          max-width: 95%;
-          max-height: 28vh;
-          max-height: 26vh;
+          height: auto;
+          width: auto;
+          max-height: 23vh;
+          max-width: 23vh;
 
           border: 3px solid white;
           border-radius: 500rem 500rem;
-          margin-top: 3.5rem;
+          border: none;
+          border-radius: 0rem;
+          margin-top: 3rem;
+          margin-top: 3rem;
           margin-bottom: 0.5rem;
-          aspect-ratio: 1/1;
+        }
+        h1 {
+          margin-top: 2.5rem;
+          margin-bottom: 1.75rem;
+          text-align: left;
+          position: relative;
         }
 
-        h4 {
-          margin: 0.75rem 0rem;
+        h1::before {
+          content: "You're invited to...";
+          content: "Welcome to...";
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-1.25rem);
+          font-size: 0.8rem;
+          color: hsl(0, 0%, 50%);
+        }
+
+        h3 {
+          margin: 1rem 0rem;
           align-self: flex-start;
         }
-
+        h4 {
+          margin: 0.5rem 0rem;
+          align-self: flex-start;
+        }
         .buttonWrapper {
           width: 100%;
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          padding-top: 1.5rem;
+          margin-top: 1rem;
           align-items: flex-end;
         }
 
-        h1 {
-          margin-bottom: 1rem;
-          text-align: right;
-        }
-
         .buttonWrapper button {
+          background-color: var(--main-purple);
+          border: none;
           font: inherit;
           cursor: pointer;
           outline: inherit;
-          background: none;
           color: white;
           width: auto;
-          min-width: 10rem;
-          min-width: 12rem;
-          border: 3px solid white;
+          min-width: 10.1rem;
           border-radius: 200rem;
-          margin-top: 0.5rem;
+          margin-top: 1rem;
           margin-bottom: 0.5rem;
           align-self: end;
           font-weight: bold;
-          padding: 1rem;
+          padding: 0.75rem;
           padding-left: 1rem;
           padding-right: 1rem;
           font-size: 0.85rem;
           font-size: 1rem;
         }
-        .buttonWrapper button.primaryBtn {
-          background-color: var(--main-purple);
+        .buttonWrapper button.secondaryBtn {
+          background: none;
+          border: 3px solid white;
+        }
+
+        .buttonWrapper button.linkBtn {
+          background: none;
           border: none;
+          margin-top: -0.25rem;
+          color: var(--main-purple-on-black);
         }
         .buttonWrapper button:active {
           font-weight: 800;

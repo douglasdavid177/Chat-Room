@@ -30,12 +30,12 @@ function Layout(props) {
         }
         .hamburgerHolder {
           position: fixed;
-          top: 0.75rem;
-          left: 0.75rem;
+          top: 1rem;
+          left: 1rem;
           width: 2rem;
         }
         button.hamburger {
-          width: 1.85rem;
+          width: 2rem;
           aspect-ratio: 1;
           background: none;
           border: none;
@@ -58,6 +58,7 @@ function Layout(props) {
       <style jsx global>{`
         :root {
           --main-purple: #6400a0;
+          --main-purple-on-black: #b83dff;
         }
 
         html,
@@ -95,7 +96,7 @@ function Layout(props) {
 
         h3 {
           color: hsl(0, 0%, 50%);
-          font-size: 1.15rem;
+          font-size: 1.2rem;
         }
         h4 {
           color: hsl(0, 0%, 50%);
