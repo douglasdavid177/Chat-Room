@@ -59,6 +59,7 @@ function Layout(props) {
         :root {
           --main-purple: #6400a0;
         }
+
         html,
         body {
           padding: 0;
@@ -66,9 +67,19 @@ function Layout(props) {
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+          scroll-behavior: smooth;
+        }
+        html {
+          -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+        }
+
+        .debugging {
+          outline: 3px solid red;
         }
         body {
-          background-color: #121212;
           background-color: black;
           color: white;
         }
@@ -85,14 +96,10 @@ function Layout(props) {
         h3 {
           color: hsl(0, 0%, 50%);
           font-size: 1.15rem;
-          margin: 0.75rem 0rem;
-          align-self: flex-start;
         }
         h4 {
           color: hsl(0, 0%, 50%);
           font-size: 1rem;
-          margin: 0.75rem 0rem;
-          align-self: flex-start;
         }
         h2 {
           color: hsl(0, 0%, 50%);

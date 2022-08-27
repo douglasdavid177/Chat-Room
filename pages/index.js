@@ -83,6 +83,7 @@ export default function Home() {
           position: fixed;
           inset: 0;
           overflow-y: auto;
+          overflow-x: hidden;
           scrollbar-gutter: stable;
 
           /*Scrolls, with scrollbar not affecting layout*/
@@ -99,6 +100,11 @@ export default function Home() {
           border-radius: 500rem 500rem;
           margin-top: 3.5rem;
           margin-bottom: 0.5rem;
+        }
+
+        h4 {
+          margin: 0.75rem 0rem;
+          align-self: flex-start;
         }
 
         .buttonWrapper {
