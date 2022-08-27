@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [user, setUser] = useState("");
-  const subheadingAnimDur = 0.65;
+  const subheadingAnimDur = 0.75;
   return (
     <div className={"container"}>
       <div className={"content"}>
@@ -51,7 +51,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur / 4,
+              delay: subheadingAnimDur - 0.5,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
@@ -62,7 +62,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur / 4 + 0.1,
+              delay: subheadingAnimDur - 0.5 + 0.1,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
