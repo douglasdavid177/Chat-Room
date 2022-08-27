@@ -1,23 +1,21 @@
+import { useState } from "react";
+import NavBar from "./navbar";
+import NavPanel from "./navpanel";
+
 function Layout(props) {
+  const [navPanelOpen, setNavPanelOpen] = useState(false);
+  const [mainSectionKey, setMainSectionKey] = useState(0);
+
   return (
     <div className="container">
       {props.children}
-      <div className={"hamburgerHolder"}>
-        <button
-          className={"hamburger"}
-          onClick={() => {
-            // setNavPanelOpen(!navPanelOpen);
-          }}
-        >
-          <img src="./menu.svg"></img>
-        </button>
-        {/* <NavPanel
+      <NavBar setNavPanelOpen={setNavPanelOpen} />
+      <NavPanel
         isOpen={navPanelOpen}
         setIsOpen={setNavPanelOpen}
         currentSectionKey={mainSectionKey}
         setSectionKey={setMainSectionKey}
-      /> */}
-      </div>
+      />
       <style jsx>{`
         .container {
           display: flex;
@@ -28,37 +26,19 @@ function Layout(props) {
           right: 0;
           height: 100%;
         }
-        .hamburgerHolder {
-          position: fixed;
-          top: 1rem;
-          left: 1rem;
-          width: 2rem;
-        }
-        button.hamburger {
-          width: 2rem;
-          aspect-ratio: 1;
-          background: none;
-          border: none;
-          outline: none;
-          padding: 0;
-          margin: 0;
-          box-sizing: border-box;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-        }
-        button.hamburger img {
-          height: 100%;
-          width: 100%;
-          backdrop-filter: blur(0.1rem);
-          border-radius: 0.2rem;
-        }
       `}</style>
       <style jsx global>{`
         :root {
           --main-purple: #6400a0;
           --main-purple-on-black: #b83dff;
+          --turquoise: #1bbc9b;
+          --yellow: #ffce54;
+          --yellow-dark: #f6bb42;
+          --grass: #a0d468;
+          --grass-dark: #8cc152;
+          --aqua: #4fc1e9;
+          --aqua-dark: #3bafda;
+          --grapefruit: #da4453;
         }
 
         html,
@@ -116,7 +96,13 @@ function Layout(props) {
         }
         .rightTextAlign {
           text-align: right;
-          align-self: flex-end;
+        }
+        .darkblur {
+          background: rgb(28 28 28/0.7);
+          backdrop-filter: blur(0.8rem);
+        }
+        .transparentBG {
+          background: transparent;
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
