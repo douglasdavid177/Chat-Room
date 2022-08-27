@@ -3,25 +3,24 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [user, setUser] = useState("");
-  const subheadingAnimDur = 0.75;
+  const subheadingAnimDur = 0.65;
   return (
     <div className={"container"}>
       <div className={"content"}>
-        <motion.div
+        {/* <motion.div
           initial={{ translateY: -50, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1 }}
           transition={{
-            // duration: 0.75,
-            duration: 0,
+            duration: 0.75,
             // ease: [0.1, 0.1, 0, 1],
           }}
-        >
-          <img
-            src="/partysvg.svg"
-            alt="An SVG of people socializing"
-            className={"heroimg"}
-          />
-        </motion.div>
+        > */}
+        <img
+          src="/partysvg.svg"
+          alt="An SVG of people socializing"
+          className={"heroimg"}
+        />
+        {/* </motion.div> */}
 
         <h1>Welcome to David&apos;s Party Room!</h1>
         <motion.h4
@@ -51,7 +50,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur - 0.5,
+              delay: subheadingAnimDur / 4,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
@@ -62,7 +61,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur - 0.5 + 0.1,
+              delay: subheadingAnimDur / 4 + 0.1,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
