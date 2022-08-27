@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [user, setUser] = useState("");
-  const subheadingAnimDur = 0.65;
   return (
     <div className={"container"}>
       <div className={"content"}>
@@ -25,9 +24,9 @@ export default function Home() {
         <h1>Welcome to David&apos;s Party Room!</h1>
         <motion.h4
           className={"leftMessage"}
-          initial={{ translateX: -30, opacity: 0 }}
+          initial={{ translateX: -100, opacity: 0 }}
           animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: subheadingAnimDur, ease: [0.1, 0.1, 0, 1] }}
+          transition={{ duration: 0.65, ease: [0.1, 0.1, 0, 1] }}
         >
           ...A virtual public chatroom that updates in real-time! <br />
         </motion.h4>
@@ -37,9 +36,9 @@ export default function Home() {
         </h3> */}
         <motion.h4
           className="rightTextAlign rightMessage"
-          initial={{ translateX: 30, opacity: 0 }}
+          initial={{ translateX: 100, opacity: 0 }}
           animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: subheadingAnimDur, ease: [0.1, 0.1, 0, 1] }}
+          transition={{ duration: 0.65, ease: [0.1, 0.1, 0, 1] }}
         >
           Please be kind to each other ;) {/* <br /> */}
           Mean messages can get you banned...
@@ -50,7 +49,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur / 4,
+              delay: 0.25,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
@@ -61,7 +60,7 @@ export default function Home() {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{
               duration: 1,
-              delay: subheadingAnimDur / 4 + 0.1,
+              delay: 0.25 + 0.1,
               ease: [0.1, 0.1, 0, 1],
             }}
           >
@@ -87,19 +86,20 @@ export default function Home() {
           scrollbar-gutter: stable;
 
           /*Scrolls, with scrollbar not affecting layout*/
+          /*Main content container has low padding bc padding is added to it in media queries*/
         }
 
         .heroimg {
           align-self: center;
-          width: auto;
           max-width: 95%;
           max-height: 28vh;
           max-height: 26vh;
-          aspect-ratio: 1/1;
+
           border: 3px solid white;
           border-radius: 500rem 500rem;
           margin-top: 3.5rem;
           margin-bottom: 0.5rem;
+          aspect-ratio: 1/1;
         }
 
         h4 {
@@ -136,7 +136,7 @@ export default function Home() {
           margin-bottom: 0.5rem;
           align-self: end;
           font-weight: bold;
-          padding: 0.5rem;
+          padding: 1rem;
           padding-left: 1rem;
           padding-right: 1rem;
           font-size: 0.85rem;
