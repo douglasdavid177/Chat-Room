@@ -193,6 +193,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           margin: 0;
           padding: 0;
           margin-right: 1rem;
+          margin-left: 0.5rem;
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
         }
