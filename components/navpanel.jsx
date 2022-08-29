@@ -59,15 +59,15 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
             <WarningBadge />
 
             <div className={"messageContainer"}>
-              {/* <h4>
+              <h5>
                 {`
-              Many tools in this list are in development and will be ready to blow you away in the near future! ;) Check back soon to experience new tools and increased functionality. `}
-              </h4> */}
-              <h4>
+Remember that ALL messages—sent and received—can be seen by anyone on the internet, and are not private. Toxic messages aren’t allowed. The security bot on duty will not hesitate to enforce this rule with a temporary ban.`}
+              </h5>
+              {/* <h4>
                 {`
                 Here's some random filler text that sits at the bottom of the navigation panel and highlights some key features of the app, or perhaps just a brief description
 `}{" "}
-              </h4>
+              </h4> */}
             </div>
           </div>
         </motion.div>
@@ -135,11 +135,9 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           line-height: 1.45;
           color: white;
         }
-        .panel .menuSection h5.sectionHeading {
-          margin: 0;
-          padding: 0;
-          margin-bottom: 1rem;
-          margin-right: 1.5rem;
+        .panel .menuSection h5 {
+          text-align: center;
+          margin: 0rem 1rem;
         }
 
         .panel button.disabledButton h3 {
@@ -149,10 +147,10 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           color: var(--main-purple-on-black);
         }
 
-        .panel h5,
-        .panel h2 {
+        .panel h5 {
           margin: 0;
           color: hsl(0, 0%, 50%);
+          font-size: 0.9rem;
         }
 
         .panel h4 {
@@ -161,6 +159,7 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
         }
         .panel hr {
           width: 85%;
+          width: 100%;
           margin-bottom: 1.5rem;
           color: hsl(0, 0%, 50%);
           background: hsl(0, 0%, 50%);
@@ -169,7 +168,13 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
         }
 
         hr.miniline {
-          width: 20%;
+          width: 100%;
+          max-width: 50%;
+          margin-bottom: 1.5rem;
+          color: hsl(0, 0%, 50%);
+          background: hsl(0, 0%, 50%);
+          border: 1px solid hsl(0, 0%, 50%);
+          height: 0.2rem;
         }
         .closedPanel {
           transform: translateX(100%);
@@ -249,6 +254,11 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           color: var(--main-purple-on-black);
         }
 
+        .panel .menuSection .navHeadingContainer {
+          display: flex;
+          flex-direction: row;
+        }
+
         @keyframes warningAnim {
           0% {
             opacity: 0;
@@ -315,8 +325,13 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
   function MenuSection(props) {
     return (
       <div className={"menuSection"}>
+        {/* <div className="navHeadingContainer">
+          <hr align="right" className="miniline" />
+          <h5>{props.label}</h5>
+          <hr align="left" className="miniline" />
+        </div> */}
         <h5>{props.label}</h5>
-        <hr align="left" />
+        <hr align="center" className="miniline" />
         <ul>{props.children}</ul>
       </div>
     );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   const [user, setUser] = useState("");
@@ -14,11 +15,20 @@ export default function Home() {
             // ease: [0.1, 0.1, 0, 1],
           }}
         > */}
-        <img
-          src="/partysvg.svg"
-          alt="An SVG of people socializing"
-          className={"heroimg"}
-        />
+        {/* <Image
+
+          width={200}
+          height={200}
+        /> */}
+        <div className="hereimgContainer">
+          <img
+            className={"heroimg"}
+            src="/partysvg.svg"
+            alt="An SVG of people socializing"
+            layout="fill"
+          />
+        </div>
+
         {/* </motion.div> */}
         <h1>David&apos;s Uber-Exclusive VIP Chat Room!</h1>
         <motion.div
@@ -91,20 +101,21 @@ export default function Home() {
           /*Main content container has low padding bc padding is added to it in media queries*/
         }
 
-        .heroimg {
+        .hereimgContainer {
           align-self: center;
           height: auto;
           width: auto;
-          max-height: 23vh;
-          max-width: 23vh;
+          height: auto;
+          width: 23vh;
+          margin-top: 4rem;
+          //margin-bottom: 0.5rem;
+          position: relative;
+        }
 
-          border: 3px solid white;
-          border-radius: 500rem 500rem;
-          border: none;
-          border-radius: 0rem;
-          margin-top: 3rem;
-          margin-top: 3rem;
-          margin-bottom: 0.5rem;
+        .heroimg {
+          height: auto;
+          width: 100%;
+          //aspect-ratio: 1;
         }
         h1 {
           margin-top: 2.5rem;
