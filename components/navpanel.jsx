@@ -45,8 +45,9 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           <div className={"panel"}>
             <MenuSection label={"Menu"}>
               <MenuItem label={"Home"} sectionKey={0} />
-              <MenuItem label={"About"} sectionKey={-1} />
+              <MenuItem label={"Account Settings"} sectionKey={-1} />
               <MenuItem label={"Chat Room"} sectionKey={-1} />
+              <MenuItem label={"About"} sectionKey={-1} />
             </MenuSection>
 
             <WarningBadge />

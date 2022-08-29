@@ -1,0 +1,32 @@
+:root {
+  --main-purple: #6400a0;
+  --main-purple-on-black: #b83dff;
+  --turquoise: #1bbc9b;
+  --yellow: #ffce54;
+  --yellow-dark: #f6bb42;
+  --grass: #a0d468;
+  --grass-dark: #8cc152;
+  --aqua: #4fc1e9;
+  --aqua-dark: #3bafda;
+  --grapefruit: #da4453;
+}
+.rightArrowBefore {
+  position: relative;
+  width: 2rem;
+}
+.rightArrowBefore::before {
+  /*Left arrow before word with this class*/
+  /*This class is in a seperate file because 
+  the symbol can't be decoded in styled jsx*/
+  position: absolute;
+  color: white;
+  content: "\2192  ";
+  background: none;
+  font-size: 2rem;
+  top: -0.75rem;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 3rem;
+  transform: scaleX(80%) translateX(-10%);
+}

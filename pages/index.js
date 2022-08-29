@@ -74,8 +74,8 @@ export default function Home(props) {
                 props.setNavPanelOpen(true);
               }}
             >
-              {" "}
-              View menu
+              <div className=" rightArrowBefore"></div>
+              <p>View menu</p>
             </button>
           </motion.div>
         </div>
@@ -166,9 +166,9 @@ export default function Home(props) {
           margin-bottom: 0.5rem;
           align-self: end;
           font-weight: bold;
-          padding: 0.75rem;
-          padding-left: 1rem;
-          padding-right: 1rem;
+          padding: 1rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
           font-size: 0.85rem;
           font-size: 1rem;
         }
@@ -179,9 +179,19 @@ export default function Home(props) {
 
         .buttonWrapper button.linkBtn {
           background: none;
+          //background: red;
           border: none;
-          margin-top: -0.25rem;
+          padding: 0.75rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          margin-top: -0.5rem;
+          position: relative;
           color: var(--main-purple-on-black);
+          display: flex;
+          flex: direction: row;
+        }
+        .buttonWrapper button.linkBtn p {
+          margin: 0;
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */

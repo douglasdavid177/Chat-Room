@@ -32,19 +32,6 @@ function Layout(props) {
         }
       `}</style>
       <style jsx global>{`
-        :root {
-          --main-purple: #6400a0;
-          --main-purple-on-black: #b83dff;
-          --turquoise: #1bbc9b;
-          --yellow: #ffce54;
-          --yellow-dark: #f6bb42;
-          --grass: #a0d468;
-          --grass-dark: #8cc152;
-          --aqua: #4fc1e9;
-          --aqua-dark: #3bafda;
-          --grapefruit: #da4453;
-        }
-
         html,
         body {
           padding: 0;
