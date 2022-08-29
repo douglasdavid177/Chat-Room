@@ -1,14 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./navbar";
 import NavPanel from "./navpanel";
 
 function Layout(props) {
   const [navPanelOpen, setNavPanelOpen] = useState(false);
   const [mainSectionKey, setMainSectionKey] = useState(0);
+  const [myVal, setMyVal] = useState("David");
 
   return (
     <div className="container">
-      {props.children}
+      {
+        React.cloneElement(props.children, { navPanelOpen, setNavPanelOpen })
+        // Clone each child element so we can pass props down
+      }
       <NavBar setNavPanelOpen={setNavPanelOpen} />
       <NavPanel
         isOpen={navPanelOpen}

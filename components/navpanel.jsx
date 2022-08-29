@@ -45,15 +45,8 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           <div className={"panel"}>
             <MenuSection label={"Menu"}>
               <MenuItem label={"Home"} sectionKey={0} />
-              <MenuItem label={"Chat Room"} sectionKey={-1} />
               <MenuItem label={"About"} sectionKey={-1} />
-              {/* <MenuItem
-                label={"Decimal to Fraction Converter"}
-                sectionKey={-1}
-              />
-              <MenuItem label={"Unit Conversion"} sectionKey={-1} />
-              <MenuItem label={"Currency Exchange"} sectionKey={-1} />
-              <MenuItem label={"Tip Calculator"} sectionKey={-1} /> */}
+              <MenuItem label={"Chat Room"} sectionKey={-1} />
             </MenuSection>
 
             <WarningBadge />
@@ -63,11 +56,6 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
                 {`
 Remember that ALL messages—sent and received—can be seen by anyone on the internet, and are not private. Toxic messages aren’t allowed. The security bot on duty will not hesitate to enforce this rule with a temporary ban.`}
               </h5>
-              {/* <h4>
-                {`
-                Here's some random filler text that sits at the bottom of the navigation panel and highlights some key features of the app, or perhaps just a brief description
-`}{" "}
-              </h4> */}
             </div>
           </div>
         </motion.div>
@@ -169,7 +157,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         hr.miniline {
           width: 100%;
-          max-width: 50%;
+          max-width: 40%;
           margin-bottom: 1.5rem;
           color: hsl(0, 0%, 50%);
           background: hsl(0, 0%, 50%);

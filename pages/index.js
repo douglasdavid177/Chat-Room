@@ -1,26 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function Home() {
+export default function Home(props) {
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+    console.log();
+  }, []);
+
   return (
     <div className={"container"}>
       <div className={"content"}>
-        {/* <motion.div
-          initial={{ translateY: -50, opacity: 0 }}
-          animate={{ translateY: 0, opacity: 1 }}
-          transition={{
-            duration: 0.75,
-            // ease: [0.1, 0.1, 0, 1],
-          }}
-        > */}
-        {/* <Image
-
-          width={200}
-          height={200}
-        /> */}
-        <div className="hereimgContainer">
+        <div className="heroimgContainer">
           <img
             className={"heroimg"}
             src="/partysvg.svg"
@@ -29,8 +21,8 @@ export default function Home() {
           />
         </div>
 
-        {/* </motion.div> */}
         <h1>David&apos;s Uber-Exclusive VIP Chat Room!</h1>
+
         <motion.div
           className="rightTextAlign rightMessage"
           initial={{ translateX: 100, opacity: 0 }}
@@ -76,7 +68,15 @@ export default function Home() {
               ease: [0.1, 0.1, 0, 1],
             }}
           >
-            <button className={"linkBtn"}> View menu</button>
+            <button
+              className={"linkBtn"}
+              onClick={() => {
+                props.setNavPanelOpen(true);
+              }}
+            >
+              {" "}
+              View menu
+            </button>
           </motion.div>
         </div>
 
@@ -101,20 +101,20 @@ export default function Home() {
           /*Main content container has low padding bc padding is added to it in media queries*/
         }
 
-        .hereimgContainer {
+        .heroimgContainer {
           align-self: center;
           height: auto;
           width: auto;
-          height: auto;
-          width: 23vh;
+          height: 20vh;
+          width: auto;
           margin-top: 4rem;
           //margin-bottom: 0.5rem;
           position: relative;
         }
 
         .heroimg {
-          height: auto;
-          width: 100%;
+          height: 100%;
+          width: auto;
           //aspect-ratio: 1;
         }
         h1 {
