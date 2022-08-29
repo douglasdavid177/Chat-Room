@@ -183,9 +183,6 @@ export default function Home(props) {
           margin-top: -0.25rem;
           color: var(--main-purple-on-black);
         }
-        .buttonWrapper button:active {
-          font-weight: 800;
-        }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
         @media only screen and (max-width: 678px) {

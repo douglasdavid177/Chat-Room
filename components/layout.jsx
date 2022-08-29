@@ -92,6 +92,11 @@ function Layout(props) {
         h1 {
           font-size: 1.75rem;
         }
+
+        button:active {
+          filter: brightness(110%);
+          transform: scale(1.05);
+        }
         .rightMessage {
           padding-left: 3rem;
         }

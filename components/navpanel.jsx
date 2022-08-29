@@ -111,9 +111,11 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           flex-grow: 1;
         }
 
+        .panel .menuSection button:active {
+          transform: scale(1.05) translateX(2.5%);
+        }
         .panel button:not(.disabledButton):active {
-          font-weight: 900;
-          color: var(--turquoise);
+          color: var(--main-purple-on-black);
         }
 
         .panel .menuSection h3 {
@@ -157,7 +159,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         hr.miniline {
           width: 100%;
-          max-width: 40%;
+          max-width: 30%;
           margin-bottom: 1.5rem;
           color: hsl(0, 0%, 50%);
           background: hsl(0, 0%, 50%);

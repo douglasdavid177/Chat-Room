@@ -80,9 +80,13 @@ function NavBar({ setNavPanelOpen }) {
             outline: none;
             border: none;
             min-width: 5rem;
+            cursor: pointer;
           }
           .loggedInStatus button h5 {
             color: var(--main-purple-on-black);
+          }
+          .loggedInStatus button:active h5 {
+            transform: scale(1.05) translateX(-2.5%);
           }
         `}
       </style>
