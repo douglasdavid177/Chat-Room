@@ -43,7 +43,8 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           transition={{ duration: 0.7, ease: [0.3, 1, 0.4, 1] }}
         >
           <div className={"panel"}>
-            <MenuSection label={"Menu"}>
+            <MenuSection label={"Main Menu"}>
+              <UserInfoSection />
               <MenuItem label={"Home"} sectionKey={0} />
               <MenuItem label={"Account Settings"} sectionKey={-1} />
               <MenuItem label={"Chat Room"} sectionKey={-1} />
@@ -53,10 +54,10 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
             <WarningBadge />
 
             <div className={"messageContainer"}>
-              <h5>
+              <p>
                 {`
 Remember that ALL messages—sent and received—can be seen by anyone on the internet, and are not private. Toxic messages aren’t allowed. The security bot on duty will not hesitate to enforce this rule with a temporary ban.`}
-              </h5>
+              </p>
             </div>
           </div>
         </motion.div>
@@ -126,13 +127,10 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           line-height: 1.45;
           color: white;
         }
-        .panel .menuSection h5 {
-          text-align: center;
-          margin: 0rem 1rem;
-        }
 
         .panel button.disabledButton h3 {
           color: hsl(0, 0%, 50%);
+          //color: white;
         }
         .panel .homeLink {
           color: var(--main-purple-on-black);
@@ -152,20 +150,23 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           width: 85%;
           width: 100%;
           margin-bottom: 1.5rem;
+          border: none;
+          height: 0.2rem;
           color: hsl(0, 0%, 50%);
           background: hsl(0, 0%, 50%);
-          border: 1px solid hsl(0, 0%, 50%);
-          height: 0.2rem;
+          color: white;
+          background: white;
         }
 
         hr.miniline {
-          width: 100%;
-          max-width: 30%;
+          width: auto;
+          max-width: 95%;
           margin-bottom: 1.5rem;
-          color: hsl(0, 0%, 50%);
-          background: hsl(0, 0%, 50%);
-          border: 1px solid hsl(0, 0%, 50%);
-          height: 0.2rem;
+          margin-bottom: 2.5rem;
+          //margin-bottom: 0;
+          margin-top: -3.25rem;
+
+          height: 0.1rem;
         }
         .closedPanel {
           transform: translateX(100%);
@@ -176,7 +177,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         .panel ul {
           list-style-type: none;
-          width: 98%;
+          width: 100;
           margin: 0;
           padding: 0;
           display: flex;
@@ -209,6 +210,11 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           justify-content: flex-end;
           align-items: center;
           padding: 0.5rem;
+        }
+
+        .panel .messageContainer p {
+          font-size: 0.9rem;
+          font-weight: bold;
         }
 
         .comingSoonWarning {
@@ -249,6 +255,60 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         .panel .menuSection .navHeadingContainer {
           display: flex;
           flex-direction: row;
+        }
+
+        .userInfoSectionContainer {
+          margin-bottom: 2rem;
+          align-self: center;
+        }
+        .userInfoSection {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          //justify-content: space-evenly;
+          justify-content: center;
+          gap: 1rem;
+          padding-left: 0rem;
+        }
+        .userPicHolder {
+          border-radius: 5000rem 5000rem;
+          background: #505050;
+          //background: red;
+          height: 4rem;
+          width: 4rem;
+        }
+        .userInfoTextHolder {
+          display: flex;
+          flex-direction: column;
+        }
+        .userInfoTextHolder p {
+          margin: 0;
+          color: rgb(255 255 255 / 0.5);
+        }
+        .userInfoSectionContainer p.emailText {
+          margin-top: 1rem;
+          font-size: 0.675rem;
+          color: rgb(255 255 255 / 0.5);
+        }
+        .panel .menuSection h5.menuLabel {
+          color: white;
+          position: relative;
+          display: inline;
+          margin-left: 0.5rem;
+        }
+        .panel .menuSection h5.lineAfter::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: -1rem;
+          bottom: -0.5rem;
+          height: 0.2rem;
+          background: white;
+        }
+
+        .menuSectionHolder {
+          text-align: left;
+          margin-bottom: 3.5rem;
         }
 
         @keyframes warningAnim {
@@ -322,9 +382,27 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           <h5>{props.label}</h5>
           <hr align="left" className="miniline" />
         </div> */}
-        <h5>{props.label}</h5>
-        <hr align="center" className="miniline" />
+
+        <div className="menuSectionHolder">
+          <h5 className="menuLabel lineAfter">{props.label}</h5>
+        </div>
+        {/* <hr align="center" className="miniline" /> */}
         <ul>{props.children}</ul>
+      </div>
+    );
+  }
+  function UserInfoSection() {
+    return (
+      <div className="userInfoSectionContainer">
+        <div className="userInfoSection">
+          <div className="userPicHolder"></div>
+          <div className="userInfoTextHolder">
+            <p>No first name</p>
+            <p>No last name</p>
+            {/* <p className="emailText">no valid email address</p> */}
+          </div>
+        </div>
+        <p className="emailText">No email address. Not logged in.</p>
       </div>
     );
   }

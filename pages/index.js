@@ -192,6 +192,8 @@ export default function Home(props) {
         }
         .buttonWrapper button.linkBtn p {
           margin: 0;
+          font-size: 1rem;
+          
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */

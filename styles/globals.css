@@ -13,6 +13,7 @@
 .rightArrowBefore {
   position: relative;
   width: 2rem;
+  height: 3rem;
 }
 .rightArrowBefore::before {
   /*Left arrow before word with this class*/

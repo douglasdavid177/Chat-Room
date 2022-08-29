@@ -79,6 +79,9 @@ function Layout(props) {
         h1 {
           font-size: 1.75rem;
         }
+        p {
+          font-size: 0.75rem;
+        }
 
         button:active {
           filter: brightness(105%);

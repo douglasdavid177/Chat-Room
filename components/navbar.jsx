@@ -12,9 +12,9 @@ function NavBar({ setNavPanelOpen }) {
         </button>
       </div>
       <div className="loggedInStatus rightTextAlign">
-        <h5>Not logged in.</h5>
+        <p>Not logged in.</p>
         <button className="rightTextAlign">
-          <h5>Log in</h5>
+          <p>Log in</p>
         </button>
       </div>
       <style jsx>
@@ -68,11 +68,12 @@ function NavBar({ setNavPanelOpen }) {
             align-items: flex-end;
             justify-content: center;
           }
-          .loggedInStatus h5 {
+          .loggedInStatus p {
             margin-bottom: 0.15rem;
             margin-top: 0rem;
             font-size: 0.75rem;
             color: rgb(255 255 255 / 0.5);
+            font-weight: bold;
           }
           .loggedInStatus button {
             margin-top: 0rem;
@@ -82,7 +83,7 @@ function NavBar({ setNavPanelOpen }) {
             min-width: 5rem;
             cursor: pointer;
           }
-          .loggedInStatus button h5 {
+          .loggedInStatus button p {
             color: var(--main-purple-on-black);
           }
           .loggedInStatus button:active h5 {
