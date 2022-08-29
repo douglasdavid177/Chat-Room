@@ -112,7 +112,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         }
 
         .panel .menuSection button:active {
-          transform: scale(1.05) translateX(2.5%);
+          transform: scale(1.025) translateX(1.25%);
         }
         .panel button:not(.disabledButton):active {
           color: var(--main-purple-on-black);

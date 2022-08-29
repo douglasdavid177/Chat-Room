@@ -94,8 +94,8 @@ function Layout(props) {
         }
 
         button:active {
-          filter: brightness(110%);
-          transform: scale(1.05);
+          filter: brightness(105%);
+          transform: scale(1.025);
         }
         .rightMessage {
           padding-left: 3rem;

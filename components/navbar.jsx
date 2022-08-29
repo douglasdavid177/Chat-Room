@@ -86,7 +86,7 @@ function NavBar({ setNavPanelOpen }) {
             color: var(--main-purple-on-black);
           }
           .loggedInStatus button:active h5 {
-            transform: scale(1.05) translateX(-2.5%);
+            transform: scale(1.025) translateX(-1.25%);
           }
         `}
       </style>
