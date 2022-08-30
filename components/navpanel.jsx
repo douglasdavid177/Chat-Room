@@ -409,7 +409,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
   }
   function UserInfoSection() {
     return (
-      <div className="userInfoSectionContainer darkblur">
+      <div className="userInfoSectionContainer darkblurL2">
         <div className="userInfoSection">
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
