@@ -43,13 +43,18 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
           transition={{ duration: 0.7, ease: [0.3, 1, 0.4, 1] }}
         >
           <div className={"panel"}>
-            <MenuSection label={"Main Menu"}>
-              <UserInfoSection />
+            <div className="navHeadingContainer panelPadding">
+              {" "}
+              <h5 className="menuLabel lineAfter">Main Menu</h5>
+            </div>
+            <UserInfoSection />
+
+            <MenuOptions>
               <MenuItem label={"Home"} sectionKey={0} />
               <MenuItem label={"Account Settings"} sectionKey={-1} />
               <MenuItem label={"Chat Room"} sectionKey={-1} />
               <MenuItem label={"About"} sectionKey={-1} />
-            </MenuSection>
+            </MenuOptions>
 
             <WarningBadge />
 
@@ -93,13 +98,18 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           height: 100%;
           width: 100%;
           text-align: left;
-          padding: 1.65rem 1rem 2rem 1rem;
+          padding: 1.65rem 0rem 2rem 0rem;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           position: relative;
           overflow-y: auto;
+          overflow-x: hidden;
           scrollbar-gutter: stable;
+        }
+        .panelPadding {
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
         .panel button {
           border: none;
@@ -113,14 +123,14 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           flex-grow: 1;
         }
 
-        .panel .menuSection button:active {
+        .panel .menuOptions button:active {
           transform: scale(1.025) translateX(1.25%);
         }
         .panel button:not(.disabledButton):active {
           color: var(--main-purple-on-black);
         }
 
-        .panel .menuSection h3 {
+        .panel .menuOptions h3 {
           padding: 0;
           margin: 0.5rem 0rem;
           font-size: 1.125rem;
@@ -209,7 +219,8 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           flex-direction: column;
           justify-content: flex-end;
           align-items: center;
-          padding: 0.5rem;
+          padding: 1.5rem;
+          padding: 0.5rem 1.5rem 0.5rem 1.5rem;
         }
 
         .panel .messageContainer p {
@@ -222,7 +233,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           align-items: flex-end;
           text-align: center;
           justify-content: center;
-          padding-bottom: 1rem;
+          padding-bottom: 0.5rem;
           width: 100%;
           height: 3rem;
           position: sticky;
@@ -242,24 +253,29 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           animation: warningAnim 1.5s ease;
         }
 
-        .menuSection {
+        .menuOptions {
           width: 100%;
           margin-top: 0rem;
           margin-bottom: 2rem;
         }
 
-        .panel .menuSection button.currentMenuItem h3 {
+        .panel .menuOptions button.currentMenuItem h3 {
           color: var(--main-purple-on-black);
         }
 
-        .panel .menuSection .navHeadingContainer {
-          display: flex;
-          flex-direction: row;
+        .panel .navHeadingContainer {
+          text-align: left;
+          margin-bottom: 2rem;
         }
 
         .userInfoSectionContainer {
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
           align-self: center;
+          width: calc(100% + 2rem);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0.5rem 0rem;
         }
         .userInfoSection {
           display: flex;
@@ -267,8 +283,9 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           align-items: center;
           //justify-content: space-evenly;
           justify-content: center;
-          gap: 1rem;
+          gap: 1.5rem;
           padding-left: 0rem;
+          margin-top: 1rem;
         }
         .userPicHolder {
           border-radius: 5000rem 5000rem;
@@ -276,39 +293,41 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           //background: red;
           height: 4rem;
           width: 4rem;
+          //border: 0.075rem solid white;
         }
         .userInfoTextHolder {
           display: flex;
           flex-direction: column;
+          gap: 0.2rem;
         }
         .userInfoTextHolder p {
           margin: 0;
           color: rgb(255 255 255 / 0.5);
+          font-size: 0.75rem;
+          font-weight: bold;
         }
         .userInfoSectionContainer p.emailText {
           margin-top: 1rem;
-          font-size: 0.675rem;
+          font-size: 0.75rem;
           color: rgb(255 255 255 / 0.5);
+          font-weight: bold;
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
-        .panel .menuSection h5.menuLabel {
+        .panel h5.menuLabel {
           color: white;
           position: relative;
           display: inline;
           margin-left: 0.5rem;
         }
-        .panel .menuSection h5.lineAfter::after {
+        .panel h5.lineAfter::after {
           content: "";
           position: absolute;
           left: 0;
           right: -1rem;
           bottom: -0.5rem;
-          height: 0.2rem;
+          height: 0.1rem;
           background: white;
-        }
-
-        .menuSectionHolder {
-          text-align: left;
-          margin-bottom: 3.5rem;
         }
 
         @keyframes warningAnim {
@@ -374,18 +393,15 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
     );
   }
 
-  function MenuSection(props) {
+  function MenuOptions(props) {
     return (
-      <div className={"menuSection"}>
+      <div className={"menuOptions panelPadding"}>
         {/* <div className="navHeadingContainer">
           <hr align="right" className="miniline" />
           <h5>{props.label}</h5>
           <hr align="left" className="miniline" />
         </div> */}
 
-        <div className="menuSectionHolder">
-          <h5 className="menuLabel lineAfter">{props.label}</h5>
-        </div>
         {/* <hr align="center" className="miniline" /> */}
         <ul>{props.children}</ul>
       </div>
@@ -393,16 +409,17 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
   }
   function UserInfoSection() {
     return (
-      <div className="userInfoSectionContainer">
+      <div className="userInfoSectionContainer darkblur">
         <div className="userInfoSection">
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
-            <p>No first name</p>
-            <p>No last name</p>
+            <p>David</p>
+            <p>Douglas</p>
             {/* <p className="emailText">no valid email address</p> */}
           </div>
         </div>
-        <p className="emailText">No email address. Not logged in.</p>
+        {/* <p className="emailText">No email address. Not logged in.</p> */}
+        <p className="emailText">douglasdavid177something@gmail.com</p>
       </div>
     );
   }
