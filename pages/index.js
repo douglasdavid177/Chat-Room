@@ -179,7 +179,6 @@ export default function Home(props) {
 
         .buttonWrapper button.linkBtn {
           background: none;
-          //background: red;
           border: none;
           padding: 0.75rem;
           padding-left: 1.5rem;

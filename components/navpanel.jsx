@@ -1,7 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
+const NavPanel = ({
+  isOpen,
+  setIsOpen,
+  currentSectionKey,
+  setSectionKey,
+  loggedIn,
+}) => {
   const [comingSoonWarning, setComingSoonWarning] = useState(false);
   const [dummyVar, setDummyVar] = useState(false);
   const badge = useRef();
@@ -10,6 +16,9 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
   useEffect(() => {
     cancelAnim();
   }, [isOpen]);
+
+  const fLName = "David Douglas";
+  const emailAd = "douglasdavid177@gmail.com";
   return (
     <AnimatePresence>
       {isOpen && (
@@ -337,6 +346,16 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           background: white;
         }
 
+        .panel button.linkButton {
+          background: none;
+          border: none;
+          color: var(--main-purple-on-black);
+          font-weight: bold;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
         @keyframes warningAnim {
           0% {
             opacity: 0;
@@ -420,13 +439,22 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         <div className="userInfoSection">
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
-            <p>Logged in as:</p>
-            <p>David Douglas</p>
+            <p> {loggedIn ? "Login successful" : "Not logged in."}</p>
+            <p>
+              {loggedIn ? (
+                fLName
+              ) : (
+                <button className="linkButton">Log in</button>
+              )}
+            </p>
+
             {/* <p className="emailText">no valid email address</p> */}
           </div>
         </div>
         {/* <p className="emailText">No email address. Not logged in.</p> */}
-        <p className="emailText">douglasdavid177@gmail.com</p>
+        <p className="emailText">
+          {loggedIn ? emailAd : "You must be logged in to send messages"}
+        </p>
       </div>
     );
   }

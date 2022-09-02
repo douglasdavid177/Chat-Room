@@ -7,18 +7,24 @@ function Layout(props) {
   const [mainSectionKey, setMainSectionKey] = useState(0);
   const [myVal, setMyVal] = useState("David");
 
+  const loggedIn = true;
   return (
     <div className="container">
       {
-        React.cloneElement(props.children, { navPanelOpen, setNavPanelOpen })
+        React.cloneElement(props.children, {
+          navPanelOpen,
+          setNavPanelOpen,
+          loggedIn,
+        })
         // Clone each child element so we can pass props down
       }
-      <NavBar setNavPanelOpen={setNavPanelOpen} />
+      <NavBar setNavPanelOpen={setNavPanelOpen} loggedIn={loggedIn} />
       <NavPanel
         isOpen={navPanelOpen}
         setIsOpen={setNavPanelOpen}
         currentSectionKey={mainSectionKey}
         setSectionKey={setMainSectionKey}
+        loggedIn={loggedIn}
       />
       <style jsx>{`
         .container {
