@@ -125,7 +125,7 @@ export default function Home(props) {
         }
 
         h1::before {
-          content: "You're invited to...";
+          //content: "You're invited to...";
           content: "Welcome to...";
           position: absolute;
           top: 0;
@@ -188,12 +188,12 @@ export default function Home(props) {
           position: relative;
           color: var(--main-purple-on-black);
           display: flex;
-          flex: direction: row;
+          flex-direction: row;
+          align-items: center;
         }
         .buttonWrapper button.linkBtn p {
           margin: 0;
           font-size: 1rem;
-          
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
