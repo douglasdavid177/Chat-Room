@@ -72,8 +72,8 @@ function NavBar({ setNavPanelOpen }) {
             margin-bottom: 0.15rem;
             margin-top: 0rem;
             font-size: 0.75rem;
-            color: rgb(255 255 255 / 0.5);
-            font-weight: bold;
+            color: rgb(255 255 255 / 0.55);
+            //font-weight: bold;
           }
           .loggedInStatus button {
             margin-top: 0rem;
@@ -82,6 +82,7 @@ function NavBar({ setNavPanelOpen }) {
             border: none;
             min-width: 5rem;
             cursor: pointer;
+            font-weight: bold;
           }
           .loggedInStatus button p {
             color: var(--main-purple-on-black);

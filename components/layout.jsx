@@ -97,11 +97,11 @@ function Layout(props) {
           text-align: right;
         }
         .darkblur {
-          background: rgb(28 28 28/0.7);
-          backdrop-filter: blur(0.8rem);
+          background: rgb(28 28 28/0.6);
+          backdrop-filter: blur(0.9rem);
         }
         .darkblurL2 {
-          background: rgb(38 38 38/0.7);
+          background: rgb(38 38 38/0.6);
         }
         .transparentBG {
           background: transparent;

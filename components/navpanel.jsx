@@ -51,9 +51,9 @@ const NavPanel = ({ isOpen, setIsOpen, currentSectionKey, setSectionKey }) => {
 
             <MenuOptions>
               <MenuItem label={"Home"} sectionKey={0} />
-              <MenuItem label={"Account Settings"} sectionKey={-1} />
-              <MenuItem label={"Chat Room"} sectionKey={-1} />
               <MenuItem label={"About"} sectionKey={-1} />
+              <MenuItem label={"Chat Room"} sectionKey={-1} />
+              {/* <MenuItem label={"Account Settings"} sectionKey={-1} /> */}
             </MenuOptions>
 
             <WarningBadge />
@@ -214,7 +214,6 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         .panel .messageContainer {
           text-align: left;
-          color: hsl(0, 0%, 50%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
@@ -225,7 +224,8 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         .panel .messageContainer p {
           font-size: 0.9rem;
-          font-weight: bold;
+          color: hsl(0, 0%, 60%);
+          //font-weight: bold;
         }
 
         .comingSoonWarning {
@@ -299,18 +299,24 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           display: flex;
           flex-direction: column;
           gap: 0.2rem;
+          align-items: stretch;
+          text-align: left;
+          justify-content: center;
+          //flex-wrap: wrap;
+          max-width: 70%;
         }
         .userInfoTextHolder p {
-          margin: 0;
-          color: rgb(255 255 255 / 0.5);
+          margin: 0 0.05rem;
+          padding: 0;
+          color: rgb(255 255 255 / 0.6);
           font-size: 0.75rem;
-          font-weight: bold;
+          //font-weight: bold;
         }
         .userInfoSectionContainer p.emailText {
           margin-top: 1rem;
           font-size: 0.75rem;
-          color: rgb(255 255 255 / 0.5);
-          font-weight: bold;
+          color: rgb(255 255 255 / 0.6);
+          //font-weight: bold;
           padding-left: 1rem;
           padding-right: 1rem;
         }
@@ -319,12 +325,13 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           position: relative;
           display: inline;
           margin-left: 0.5rem;
+          font-size: 1rem;
         }
         .panel h5.lineAfter::after {
           content: "";
           position: absolute;
           left: 0;
-          right: -1rem;
+          right: -0rem;
           bottom: -0.5rem;
           height: 0.1rem;
           background: white;
@@ -413,13 +420,13 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         <div className="userInfoSection">
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
-            <p>David</p>
-            <p>Douglas</p>
+            <p>Logged in as:</p>
+            <p>David Douglas</p>
             {/* <p className="emailText">no valid email address</p> */}
           </div>
         </div>
         {/* <p className="emailText">No email address. Not logged in.</p> */}
-        <p className="emailText">douglasdavid177something@gmail.com</p>
+        <p className="emailText">douglasdavid177@gmail.com</p>
       </div>
     );
   }
