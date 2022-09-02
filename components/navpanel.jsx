@@ -98,7 +98,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           height: 100%;
           width: 100%;
           text-align: left;
-          padding: 1.65rem 0rem 2rem 0rem;
+          padding: 1.65rem 0rem 0.75rem 0rem;
           display: flex;
           flex-direction: column;
           align-items: flex-start;

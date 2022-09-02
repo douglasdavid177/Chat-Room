@@ -13,21 +13,24 @@
 .rightArrowBefore {
   position: relative;
   width: 2.15rem;
-  height: 1.5rem;
+  /* height: 1.5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .rightArrowBefore::before {
   /*Left arrow before word with this class*/
   /*This class is in a seperate file because 
   the symbol can't be decoded in styled jsx*/
-  position: absolute;
+  /* position: absolute; */
   color: white;
   content: "\2192  ";
   background: none;
-  font-size: 1rem;
-  bottom: 0;
-  left: 0;
+  /* font-size: 1rem; */
+  /* bottom: 0;
+  left: 0; */
   margin: 0;
   padding: 0;
-  height: 1.5rem;
-  transform: scale(2) translateX(0rem);
+  /* height: 1.5rem; */
+  transform: scale(1.5) translateX(0rem);
 }
