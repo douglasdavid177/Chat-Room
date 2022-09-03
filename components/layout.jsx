@@ -7,6 +7,8 @@ function Layout(props) {
   const [mainSectionKey, setMainSectionKey] = useState(0);
   const [myVal, setMyVal] = useState("David");
 
+  const fLName = "Davido Douglaso";
+  const emailAd = "douglasdavid177@gmail.com";
   const loggedIn = true;
   return (
     <div className="container">
@@ -15,16 +17,25 @@ function Layout(props) {
           navPanelOpen,
           setNavPanelOpen,
           loggedIn,
+          fLName,
+          emailAd,
         })
         // Clone each child element so we can pass props down
       }
-      <NavBar setNavPanelOpen={setNavPanelOpen} loggedIn={loggedIn} />
+      <NavBar
+        setNavPanelOpen={setNavPanelOpen}
+        loggedIn={loggedIn}
+        fLName={fLName}
+        emailAd={emailAd}
+      />
       <NavPanel
         isOpen={navPanelOpen}
         setIsOpen={setNavPanelOpen}
         currentSectionKey={mainSectionKey}
         setSectionKey={setMainSectionKey}
         loggedIn={loggedIn}
+        fLName={fLName}
+        emailAd={emailAd}
       />
       <style jsx>{`
         .container {

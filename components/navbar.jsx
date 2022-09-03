@@ -1,5 +1,4 @@
-function NavBar({ setNavPanelOpen, loggedIn }) {
-  const fLName = "David Douglas";
+function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
   return (
     <div className="navbar darkblur transparentBG">
       <div className={"hamburgerHolder"}>
@@ -16,6 +15,7 @@ function NavBar({ setNavPanelOpen, loggedIn }) {
         <p>{loggedIn ? fLName : "Not logged in."}</p>
         <button className="rightTextAlign">
           <p>{loggedIn ? "Log out" : "Log in"}</p>
+          {/* <p>{loggedIn ? "View profile" : "Log in"}</p> */}
         </button>
       </div>
       <style jsx>
@@ -73,7 +73,7 @@ function NavBar({ setNavPanelOpen, loggedIn }) {
             margin-bottom: 0.15rem;
             margin-top: 0rem;
             font-size: 0.75rem;
-            color: rgb(255 255 255 / 0.55);
+            color: hsl(0, 0%, 55%);
             //font-weight: bold;
           }
           .loggedInStatus button {

@@ -7,6 +7,8 @@ const NavPanel = ({
   currentSectionKey,
   setSectionKey,
   loggedIn,
+  fLName,
+  emailAd,
 }) => {
   const [comingSoonWarning, setComingSoonWarning] = useState(false);
   const [dummyVar, setDummyVar] = useState(false);
@@ -17,8 +19,6 @@ const NavPanel = ({
     cancelAnim();
   }, [isOpen]);
 
-  const fLName = "David Douglas";
-  const emailAd = "douglasdavid177@gmail.com";
   return (
     <AnimatePresence>
       {isOpen && (
@@ -54,8 +54,10 @@ const NavPanel = ({
           <div className={"panel"}>
             <div className="navHeadingContainer panelPadding">
               {" "}
-              <h5 className="menuLabel lineAfter">Main Menu</h5>
+              <h5 className="menuLabel">Main Menu</h5>
+              <hr className="headerLine" />
             </div>
+
             <UserInfoSection />
 
             <MenuOptions>
@@ -166,13 +168,9 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           color: hsl(0, 0%, 50%);
         }
         .panel hr {
-          width: 85%;
           width: 100%;
-          margin-bottom: 1.5rem;
           border: none;
           height: 0.2rem;
-          color: hsl(0, 0%, 50%);
-          background: hsl(0, 0%, 50%);
           color: white;
           background: white;
         }
@@ -274,13 +272,15 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         .panel .navHeadingContainer {
           text-align: left;
-          margin-bottom: 2rem;
+          margin-bottom: 0.5rem;
+          width: 100%;
         }
 
         .userInfoSectionContainer {
           margin-bottom: 1rem;
           align-self: center;
           width: calc(100% + 2rem);
+          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -292,7 +292,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           align-items: center;
           //justify-content: space-evenly;
           justify-content: center;
-          gap: 1.5rem;
+          gap: 0.85rem;
           padding-left: 0rem;
           margin-top: 1rem;
         }
@@ -307,27 +307,36 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         .userInfoTextHolder {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
+          gap: 0.05rem;
           align-items: stretch;
           text-align: left;
           justify-content: center;
+          transform: translateY(-30%);
+
           //flex-wrap: wrap;
           max-width: 70%;
         }
         .userInfoTextHolder p {
           margin: 0 0.05rem;
           padding: 0;
-          color: rgb(255 255 255 / 0.6);
+          color: rgb(255 255 255 / 0.99);
+          color: hsl(0, 0%, 100%);
           font-size: 0.75rem;
           //font-weight: bold;
         }
         .userInfoSectionContainer p.emailText {
           margin-top: 1rem;
           font-size: 0.75rem;
-          color: rgb(255 255 255 / 0.6);
+          color: rgb(255 255 255 / 0.99);
+          color: hsl(0, 0%, 100%);
           //font-weight: bold;
           padding-left: 1rem;
           padding-right: 1rem;
+        }
+        .userInfoSectionContainer .label {
+          color: rgb(255 255 255 / 0.6);
+          color: hsl(0, 0%, 60%);
+          //text-align: center;
         }
         .panel h5.menuLabel {
           color: white;
@@ -353,7 +362,8 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           font-weight: bold;
           display: flex;
           flex-direction: row;
-          align-items: center;
+          align-items: flex-end;
+          padding-top: 0.2rem;
         }
 
         @keyframes warningAnim {
@@ -439,21 +449,40 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         <div className="userInfoSection">
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
-            <p> {loggedIn ? "Login successful" : "Not logged in."}</p>
+            {/* {!loggedIn && <p className="label">Not logged in.</p>} */}
+            {/* {loggedIn && <p className="label">Logged in.</p>} */}
+
+            <p className="label">
+              {" "}
+              {/* {loggedIn ? "Logged in as:" : "Not logged in."} */}
+              {loggedIn ? "Display name:" : "Not logged in."}
+            </p>
             <p>
               {loggedIn ? (
-                fLName
+                <span>{fLName}</span>
               ) : (
                 <button className="linkButton">Log in</button>
               )}
             </p>
-
-            {/* <p className="emailText">no valid email address</p> */}
+            {/* {loggedIn && <button className="linkButton">Edit</button>} */}
           </div>
         </div>
         {/* <p className="emailText">No email address. Not logged in.</p> */}
+
         <p className="emailText">
-          {loggedIn ? emailAd : "You must be logged in to send messages"}
+          {loggedIn && (
+            <span className="label">
+              Profile email address:
+              <br />
+            </span>
+          )}
+          {loggedIn ? (
+            emailAd
+          ) : (
+            <span className="label">
+              You must be logged in to send messages
+            </span>
+          )}
         </p>
       </div>
     );
