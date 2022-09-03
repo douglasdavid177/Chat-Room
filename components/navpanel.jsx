@@ -1,6 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
+import {
+  FaLaptopCode,
+  FaComments,
+  FaHome,
+  FaUserTie,
+  FaUser,
+} from "react-icons/fa";
 const NavPanel = ({
   isOpen,
   setIsOpen,
@@ -55,15 +61,23 @@ const NavPanel = ({
             <div className="navHeadingContainer panelPadding">
               {" "}
               <h5 className="menuLabel">Main Menu</h5>
+              {/* <FaComments /> */}
               <hr className="headerLine" />
             </div>
 
             <UserInfoSection />
 
             <MenuOptions>
-              <MenuItem label={"Home"} sectionKey={0} />
-              <MenuItem label={"About"} sectionKey={-1} />
-              <MenuItem label={"Chat Room"} sectionKey={-1} />
+              <MenuItem label={"Home"} sectionKey={0}>
+                <FaHome />
+              </MenuItem>
+              <MenuItem label={"About"} sectionKey={-1}>
+                <FaLaptopCode />
+              </MenuItem>
+
+              <MenuItem label={"Chat Room"} sectionKey={-1}>
+                <FaComments />
+              </MenuItem>
               {/* <MenuItem label={"Account Settings"} sectionKey={-1} /> */}
             </MenuOptions>
 
@@ -116,7 +130,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           position: relative;
           overflow-y: auto;
           overflow-x: hidden;
-          scrollbar-gutter: stable;
+          //scrollbar-gutter: stable;
         }
         .panelPadding {
           padding-left: 1rem;
@@ -218,6 +232,16 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
         }
+        .iconBulletPoint {
+          height: auto;
+          aspect-ratio: 1;
+          background: transparent;
+          margin: 0;
+          padding: 0;
+          margin-right: 1rem;
+          margin-left: 0.5rem;
+          transform: scale(1.2);
+        }
 
         .panel .messageContainer {
           text-align: left;
@@ -311,7 +335,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           align-items: stretch;
           text-align: left;
           justify-content: center;
-          transform: translateY(-30%);
+          transform: translateY(-5%);
 
           //flex-wrap: wrap;
           max-width: 70%;
@@ -389,7 +413,8 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
     const disabled = props.sectionKey == -1;
     return (
       <li>
-        <div className={"bulletPoint"}></div>
+        {/* <div className={"bulletPoint"}></div> */}
+        <div className={"iconBulletPoint"}>{props.children}</div>
 
         <button
           onClick={() => {
@@ -450,7 +475,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
             {/* {!loggedIn && <p className="label">Not logged in.</p>} */}
-            {/* {loggedIn && <p className="label">Logged in.</p>} */}
+            {loggedIn && <p className="label">User logged in.</p>}
 
             <p className="label">
               {" "}
