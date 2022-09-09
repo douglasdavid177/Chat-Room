@@ -118,7 +118,7 @@ function Layout(props) {
           backdrop-filter: blur(0.9rem);
         }
         .darkblurL2 {
-          background: rgb(38 38 38/0.6);
+          background: rgb(40 40 40/0.8);
         }
         .transparentBG {
           background: transparent;

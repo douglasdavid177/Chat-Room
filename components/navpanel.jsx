@@ -307,8 +307,9 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           width: 100%;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          padding: 0.5rem 0rem;
+          align-items: flex-start;
+          padding: 0.5rem 0.5rem;
+          padding-left: 1.5rem;
         }
         .userInfoSection {
           display: flex;
@@ -335,7 +336,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           align-items: stretch;
           text-align: left;
           justify-content: center;
-          transform: translateY(-5%);
+          transform: translateY(-10%);
 
           //flex-wrap: wrap;
           max-width: 70%;
@@ -475,7 +476,6 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           <div className="userPicHolder"></div>
           <div className="userInfoTextHolder">
             {/* {!loggedIn && <p className="label">Not logged in.</p>} */}
-            {loggedIn && <p className="label">User logged in.</p>}
 
             <p className="label">
               {" "}
@@ -490,6 +490,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
               )}
             </p>
             {/* {loggedIn && <button className="linkButton">Edit</button>} */}
+            {loggedIn && <p className="label">Sending allowed</p>}
           </div>
         </div>
         {/* <p className="emailText">No email address. Not logged in.</p> */}
