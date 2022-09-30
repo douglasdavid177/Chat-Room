@@ -217,7 +217,9 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         }
         .panel li {
           display: flex;
+          flex-direction: row;
           align-items: center;
+          justify-content: flex-start;
         }
 
         .bulletPoint {
@@ -234,13 +236,21 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         }
         .iconBulletPoint {
           height: auto;
-          aspect-ratio: 1;
+          //aspect-ratio: 1;
           background: transparent;
           margin: 0;
           padding: 0;
           margin-right: 1rem;
           margin-left: 0.5rem;
-          transform: scale(1.2);
+          //transform: scale(1.2);
+          height: 1.125rem;
+          width: 1.125rem;
+          font-size: 1.125rem;
+          //background: red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform: translateY(-1px);
         }
 
         .panel .messageContainer {
