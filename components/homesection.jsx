@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import LinkButton from "./linkbutton";
 
 const HomeSection = ({ props }) => {
   return (
@@ -43,25 +44,8 @@ const HomeSection = ({ props }) => {
             >
               <button>Enter chat room</button>
             </motion.div>
-            <motion.div
-              initial={{ translateY: 50, opacity: 0 }}
-              animate={{ translateY: 0, opacity: 1 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.25 + 0.1,
-                ease: [0.1, 0.1, 0, 1],
-              }}
-            >
-              <button
-                className={"linkBtn"}
-                onClick={() => {
-                  props.setNavPanelOpen(true);
-                }}
-              >
-                <div className=" rightArrowBefore"></div>
-                <p>View menu</p>
-              </button>
-            </motion.div>
+
+            <LinkButton props={props} />
           </div>
         </AnimatePresence>
       </div>
@@ -134,24 +118,6 @@ const HomeSection = ({ props }) => {
         .buttonWrapper button.secondaryBtn {
           background: none;
           border: 3px solid white;
-        }
-
-        .buttonWrapper button.linkBtn {
-          background: none;
-          border: none;
-          padding: 0.75rem;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          margin-top: -0.5rem;
-          position: relative;
-          color: var(--main-purple-on-black);
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-        }
-        .buttonWrapper button.linkBtn p {
-          margin: 0;
-          font-size: 1rem;
         }
       `}</style>
     </div>

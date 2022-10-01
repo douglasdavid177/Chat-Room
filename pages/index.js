@@ -36,7 +36,7 @@ export default function Home(props) {
               opacity: 0,
             }}
             transition={{
-              duration: 0.3,
+              duration: 0.4,
               //ease: [0.3, 1, 0.4, 1],
             }}
           >
@@ -111,7 +111,7 @@ export default function Home(props) {
       case 0:
         return <HomeSection props={props} />;
       case 1:
-        return <AboutSection />;
+        return <AboutSection props={props} />;
       default:
         return <HomeSection props={props} />;
     }
