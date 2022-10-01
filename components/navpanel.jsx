@@ -71,7 +71,7 @@ const NavPanel = ({
               <MenuItem label={"Home"} sectionKey={0}>
                 <FaHome />
               </MenuItem>
-              <MenuItem label={"About"} sectionKey={-1}>
+              <MenuItem label={"About"} sectionKey={1}>
                 <FaLaptopCode />
               </MenuItem>
 

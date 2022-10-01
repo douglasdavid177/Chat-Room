@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import HomeSection from "../components/homesection";
+import AboutSection from "../components/aboutsection";
 
 export default function Home(props) {
   const [user, setUser] = useState("");
@@ -21,64 +23,26 @@ export default function Home(props) {
           />
         </div>
 
-        <h1>David&apos;s Uber-Exclusive VIP Chat Room!</h1>
-
-        <motion.div
-          className="rightTextAlign rightMessage"
-          initial={{ translateX: 100, opacity: 0 }}
-          animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
-        >
-          <h3>
-            ...A virtual public chat room that updates in real time!
-            <br />
-          </h3>
-        </motion.div>
-        <motion.div
-          className={"leftMessage"}
-          initial={{ translateX: -100, opacity: 0 }}
-          animate={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
-        >
-          <h3>
-            ...Please be kind! {/* &#128527;  */}
-            {/* <br /> */}
-            Mean messages can get you banned...
-          </h3>
-        </motion.div>
-
-        <div className={"buttonWrapper"}>
+        <AnimatePresence exitBeforeEnter initial={false}>
           <motion.div
-            initial={{ translateY: 40, opacity: 0 }}
-            animate={{ translateY: 0, opacity: 1 }}
+            key={props.mainSectionKey}
+            initial={{ translateY: 20, opacity: 0 }}
+            animate={{
+              translateY: 0,
+              opacity: 1,
+            }}
+            exit={{
+              translateY: -30,
+              opacity: 0,
+            }}
             transition={{
-              duration: 0.7,
-              delay: 0.25,
-              ease: [0.1, 0.1, 0, 1],
+              duration: 0.3,
+              //ease: [0.3, 1, 0.4, 1],
             }}
           >
-            <button>Enter chat room</button>
+            {componentFromKey(props.mainSectionKey)}
           </motion.div>
-          <motion.div
-            initial={{ translateY: 50, opacity: 0 }}
-            animate={{ translateY: 0, opacity: 1 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.25 + 0.1,
-              ease: [0.1, 0.1, 0, 1],
-            }}
-          >
-            <button
-              className={"linkBtn"}
-              onClick={() => {
-                props.setNavPanelOpen(true);
-              }}
-            >
-              <div className=" rightArrowBefore"></div>
-              <p>View menu</p>
-            </button>
-          </motion.div>
-        </div>
+        </AnimatePresence>
 
         {/* {user ? <MessageBoard /> : <PlaceholderBoard />} */}
       </div>
@@ -109,6 +73,7 @@ export default function Home(props) {
           width: auto;
           margin-top: 4rem;
           //margin-bottom: 0.5rem;
+          margin-bottom: 1.25rem;
           position: relative;
         }
 
@@ -116,83 +81,6 @@ export default function Home(props) {
           height: 100%;
           width: auto;
           //aspect-ratio: 1;
-        }
-        h1 {
-          margin-top: 2.5rem;
-          margin-bottom: 1.75rem;
-          text-align: left;
-          position: relative;
-        }
-
-        h1::before {
-          //content: "You're invited to...";
-          content: "Welcome to...";
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: translateY(-1.25rem);
-          font-size: 0.8rem;
-          color: hsl(0, 0%, 50%);
-        }
-
-        h3 {
-          margin: 1rem 0rem;
-          align-self: flex-start;
-        }
-        h4 {
-          margin: 0.5rem 0rem;
-          align-self: flex-start;
-        }
-        .buttonWrapper {
-          width: 100%;
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-          margin-top: 1rem;
-          align-items: flex-end;
-        }
-
-        .buttonWrapper button {
-          background-color: var(--main-purple);
-          border: none;
-          font: inherit;
-          cursor: pointer;
-          outline: inherit;
-          color: white;
-          width: auto;
-          min-width: 10.1rem;
-          border-radius: 200rem;
-          margin-top: 1rem;
-          margin-bottom: 0.5rem;
-          align-self: end;
-          font-weight: bold;
-          padding: 1rem;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          font-size: 0.85rem;
-          font-size: 1rem;
-        }
-        .buttonWrapper button.secondaryBtn {
-          background: none;
-          border: 3px solid white;
-        }
-
-        .buttonWrapper button.linkBtn {
-          background: none;
-          border: none;
-          padding: 0.75rem;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          margin-top: -0.5rem;
-          position: relative;
-          color: var(--main-purple-on-black);
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-        }
-        .buttonWrapper button.linkBtn p {
-          margin: 0;
-          font-size: 1rem;
         }
 
         /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
@@ -217,4 +105,15 @@ export default function Home(props) {
       `}</style>
     </div>
   );
+
+  function componentFromKey(key) {
+    switch (key) {
+      case 0:
+        return <HomeSection props={props} />;
+      case 1:
+        return <AboutSection />;
+      default:
+        return <HomeSection props={props} />;
+    }
+  }
 }

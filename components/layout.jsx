@@ -19,6 +19,7 @@ function Layout(props) {
           loggedIn,
           fLName,
           emailAd,
+          mainSectionKey,
         })
         // Clone each child element so we can pass props down
       }
