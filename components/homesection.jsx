@@ -45,7 +45,7 @@ const HomeSection = ({ props }) => {
               <button>Enter chat room</button>
             </motion.div>
 
-            <LinkButton props={props} />
+            <LinkButton props={props} delayAmt={0.35} />
           </div>
         </AnimatePresence>
       </div>

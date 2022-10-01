@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-const LinkButton = ({ props }) => {
+const LinkButton = ({ props, delayAmt }) => {
   return (
     <div className="btnHolder">
       <motion.div
@@ -8,7 +8,7 @@ const LinkButton = ({ props }) => {
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
           duration: 0.7,
-          delay: 0.25 + 0.1,
+          delay: delayAmt > 0 ? delayAmt : 0.125,
           ease: [0.1, 0.1, 0, 1],
         }}
       >
