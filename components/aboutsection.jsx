@@ -6,7 +6,7 @@ const AboutSection = ({ props }) => {
       {/* <h3>This is the &apos;About&apos; section!</h3> */}
       <h3>About This Project</h3>
       <p>
-        This section is still being worked on and is currently imcomplete. Heres
+        This section is still being worked on and is currently incomplete. Heres
         some text to make this section look filled in the meantime... Lorem
         ipsum dolor sit amet consectetur adipisicing elit. Error aut debitis ex,
         corrupti iusto quas nostrum architecto sint dolorum sed? Reprehenderit
