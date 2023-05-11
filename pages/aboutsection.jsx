@@ -1,6 +1,6 @@
-import LinkButton from "./linkbutton";
+import LinkButton from "../components/linkbutton";
 
-const AboutSection = ({ props }) => {
+const AboutSection = (props) => {
   return (
     <div className="aboutSection">
       {/* <h3>This is the &apos;About&apos; section!</h3> */}
@@ -15,7 +15,7 @@ const AboutSection = ({ props }) => {
         nemo repudiandae iste velit quam consectetur quis cum quo aliquam? In
         facere expedita praesentium omnis quas numquam quos temporibus quam.
       </p>
-      <LinkButton props={props} />
+      <LinkButton setNavPanelOpen={props.setNavPanelOpen} />
       <style jsx>{`
         .aboutSection {
           display: flex;

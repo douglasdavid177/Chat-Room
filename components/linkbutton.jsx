@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-const LinkButton = ({ props, delayAmt }) => {
+const LinkButton = ({ setNavPanelOpen, delayAmt }) => {
   return (
     <div className="btnHolder">
       <motion.div
+        key={"linkButton"}
         initial={{ translateY: 50, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{
@@ -15,7 +16,7 @@ const LinkButton = ({ props, delayAmt }) => {
         <button
           className={"linkBtn"}
           onClick={() => {
-            props.setNavPanelOpen(true);
+            setNavPanelOpen(true);
           }}
         >
           <div className=" rightArrowBefore"></div>

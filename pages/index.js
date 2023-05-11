@@ -1,50 +1,62 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import HomeSection from "../components/homesection";
-import AboutSection from "../components/aboutsection";
+import LinkButton from "../components/linkbutton";
 
-export default function Home(props) {
-  const [user, setUser] = useState("");
-
-  useEffect(() => {
-    console.log();
-  }, []);
-
+const HomeSection = (props) => {
   return (
-    <div className={"container"}>
-      <div className={"content"}>
-        <div className="heroimgContainer">
-          <img
-            className={"heroimg"}
-            src="/partysvg.svg"
-            alt="An SVG of people socializing"
-            layout="fill"
-          />
-        </div>
+    <div className="homeSection">
+      <div className="content">
+        <AnimatePresence>
+          <h1 key={"heading"}>David&apos;s Uber-Exclusive VIP Chat Room!</h1>
 
-        <AnimatePresence exitBeforeEnter initial={false}>
           <motion.div
-            key={props.mainSectionKey}
-            initial={{ translateY: 20, opacity: 0 }}
-            animate={{
-              translateY: 0,
-              opacity: 1,
-            }}
-            exit={{
-              translateY: -30,
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.4,
-              //ease: [0.3, 1, 0.4, 1],
-            }}
+            key={"rightMessage"}
+            className="rightTextAlign rightMessage"
+            initial={{ translateX: 100, opacity: 0 }}
+            animate={{ translateX: 0, opacity: 1 }}
+            transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
           >
-            {componentFromKey(props.mainSectionKey)}
+            <h3>
+              ...A virtual public chat room that updates in real time!
+              <br />
+            </h3>
           </motion.div>
-        </AnimatePresence>
+          <motion.div
+            key={"leftMessage"}
+            className={"leftMessage"}
+            initial={{ translateX: -100, opacity: 0 }}
+            animate={{ translateX: 0, opacity: 1 }}
+            transition={{ duration: 0.7, ease: [0.1, 0.1, 0, 1] }}
+          >
+            <h3>
+              ...Please be kind! {/* &#128527;  */}
+              {/* <br /> */}
+              Mean messages can get you banned...
+            </h3>
+          </motion.div>
 
-        {/* {user ? <MessageBoard /> : <PlaceholderBoard />} */}
+          <div className={"buttonWrapper"}>
+            <motion.div
+              key={"primBtn"}
+              initial={{ translateY: 40, opacity: 0 }}
+              animate={{ translateY: 0, opacity: 1 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.25,
+                ease: [0.1, 0.1, 0, 1],
+              }}
+            >
+              <button>Enter chat room</button>
+            </motion.div>
+
+            <LinkButton
+              // setNavPanelOpen={props.setNavPanelOpen}
+              // delayAmt={0.35}
+
+              setNavPanelOpen={props.setNavPanelOpen}
+              delayAmt={0.35}
+            />
+          </div>
+        </AnimatePresence>
       </div>
 
       <style jsx>{`
@@ -55,65 +67,70 @@ export default function Home(props) {
           justify-content: flex-start;
           text-align: left;
           padding: 0rem;
-          position: fixed;
-          inset: 0;
-          overflow-y: auto;
-          overflow-x: hidden;
-          scrollbar-gutter: stable;
-
-          /*Scrolls, with scrollbar not affecting layout*/
-          /*Main content container has low padding bc padding is added to it in media queries*/
         }
-
-        .heroimgContainer {
-          align-self: center;
-          height: auto;
-          width: auto;
-          height: 20vh;
-          width: auto;
-          margin-top: 4rem;
-          //margin-bottom: 0.5rem;
-          margin-bottom: 1.25rem;
+        h1 {
+          //margin-top: 2.5rem;
+          //margin-top: 0rem;
+          margin-bottom: 1.75rem;
+          text-align: left;
           position: relative;
         }
 
-        .heroimg {
-          height: 100%;
-          width: auto;
-          //aspect-ratio: 1;
+        h1::before {
+          //content: "You're invited to...";
+          content: "Welcome to...";
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-1.25rem);
+          font-size: 0.8rem;
+          color: hsl(0, 0%, 50%);
         }
 
-        /* Media queries adjust the amount of columns based on the width of the screen, to better accommodate smaller devices  */
-        @media only screen and (max-width: 678px) {
-          .content {
-            padding-left: 7.5%;
-            padding-right: 7.5%;
-          }
+        h3 {
+          margin: 1rem 0rem;
+          align-self: flex-start;
         }
-        @media only screen and (min-width: 678px) {
-          .content {
-            padding-left: 20%;
-            padding-right: 20%;
-          }
+        h4 {
+          margin: 0.5rem 0rem;
+          align-self: flex-start;
         }
-        @media only screen and (min-width: 1200px) {
-          .content {
-            padding-left: 30%;
-            padding-right: 30%;
-          }
+        .buttonWrapper {
+          width: 100%;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          margin-top: 1rem;
+          align-items: flex-end;
+        }
+
+        .buttonWrapper button {
+          background-color: var(--main-purple);
+          border: none;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
+          color: white;
+          width: auto;
+          min-width: 10.1rem;
+          border-radius: 200rem;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+          align-self: end;
+          font-weight: bold;
+          padding: 1rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          font-size: 0.85rem;
+          font-size: 1rem;
+        }
+        .buttonWrapper button.secondaryBtn {
+          background: none;
+          border: 3px solid white;
         }
       `}</style>
     </div>
   );
+};
 
-  function componentFromKey(key) {
-    switch (key) {
-      case 0:
-        return <HomeSection props={props} />;
-      case 1:
-        return <AboutSection props={props} />;
-      default:
-        return <HomeSection props={props} />;
-    }
-  }
-}
+export default HomeSection;

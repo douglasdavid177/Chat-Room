@@ -55,7 +55,7 @@ const NavPanel = ({
           initial={{ x: "-100%" }}
           animate={{ x: "0%" }}
           exit={{ x: "-100%" }}
-          transition={{ duration: 0.7, ease: [0.3, 1, 0.4, 1] }}
+          transition={{ duration: 0.5, ease: [0.3, 1, 0.4, 1] }}
         >
           <div className={"panel"}>
             <div className="navHeadingContainer panelPadding">
@@ -75,7 +75,7 @@ const NavPanel = ({
                 <FaLaptopCode />
               </MenuItem>
 
-              <MenuItem label={"Chat Room"} sectionKey={-1}>
+              <MenuItem label={"Chat Room"} sectionKey={2} newPage={true}>
                 <FaComments />
               </MenuItem>
               {/* <MenuItem label={"Account Settings"} sectionKey={-1} /> */}
@@ -318,7 +318,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          padding: 0.5rem 0.5rem;
+          padding: 0.5rem 0.65rem;
           padding-left: 1.5rem;
         }
         .userInfoSection {
@@ -333,7 +333,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         }
         .userPicHolder {
           border-radius: 5000rem 5000rem;
-          background: #505050;
+          background: hsl(0, 0%, 30%);
           //background: red;
           height: 4rem;
           width: 4rem;
@@ -437,7 +437,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
             setSectionKey(props.sectionKey);
             setIsOpen(false);
           }}
-          // Make label text gray if disabled, green if it's the active section, or white otherwise
+          // Make label text gray if disabled, purple if it's the active section, or white otherwise
           className={`${disabled ? "disabledButton" : ""} ${
             props.sectionKey == currentSectionKey ? "currentMenuItem" : ""
           }`}

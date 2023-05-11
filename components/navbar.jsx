@@ -1,4 +1,4 @@
-function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
+function NavBar({ setNavPanelOpen, loggedIn, fLName, mainSectionKey }) {
   return (
     <div className="navbar darkblur transparentBG">
       <div className={"hamburgerHolder"}>
@@ -11,6 +11,7 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
           <img src="./menu.svg"></img>
         </button>
       </div>
+      {mainSectionKey == 2 && <h4 className="centered">Chat Room</h4>}
       <div className="loggedInStatus rightTextAlign">
         <p>{loggedIn ? fLName : "Not logged in."}</p>
         <button className="rightTextAlign">
@@ -31,12 +32,13 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
             display: flex;
             flex-direction: row;
             width: 100%;
-            justify-content: space-between;
+            //justify-content: space-between;
             align-items: center;
           }
 
           .hamburgerHolder {
             margin-left: 1.5rem;
+            margin-right: 1rem;
             width: 2rem;
           }
           button.hamburger {
@@ -68,6 +70,7 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
+            flex-grow: 1;
           }
           .loggedInStatus p {
             margin-bottom: 0.15rem;
@@ -90,6 +93,9 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName }) {
           }
           .loggedInStatus button:active h5 {
             transform: translateX(-1.25%);
+          }
+          .centered {
+            justify-self: start;
           }
         `}
       </style>
