@@ -9,34 +9,61 @@ function ChatInputBar({
   setScrollDownBtn,
   scrollContainer,
 }) {
-  const [targRot, setTargRot] = useState(0);
+  const [targRot, setTargRot] = useState(90);
+  const [currentDraft, setCurrentDraft] = useState("");
 
   useEffect(() => {
     const cont = scrollContainer?.current;
+    if (cont == undefined || cont == null) return;
     console.log("cont:");
     console.log(cont);
     // cont.onScroll = checkRotateArrow;
-    // cont.addEventlistener("scroll", checkRotateArrow);
-    // return () => {
-    //   cont.removeEventListener("scroll", checkRotateArrow);
-    // };
+
+    cont.addEventListener("scroll", checkRotateArrow);
+    cont.addEventListener("resize", checkRotateArrow);
+    //cont.addEventListener("orientationchange", checkRotateArrow);
+
+    checkRotateArrow();
+
+    return () => {
+      cont.removeEventListener("scroll", checkRotateArrow);
+      cont.removeEventListener("resize", checkRotateArrow);
+      //cont.removeEventListener("orientationchange", checkRotateArrow);
+    };
   }, []);
+
+  useEffect(() => {
+    checkRotateArrow();
+  }, [visible]);
+
+  function test() {
+    console.log("changed orientation");
+  }
 
   useEffect(() => {
     //checkRotateArrow();
   }, [scrollContainer.current?.scrollTop]);
 
   function checkRotateArrow() {
-    console.log("test");
+    // console.log("test");
     if (
       scrollContainer.current?.scrollHeight -
         scrollContainer.current?.scrollTop -
         scrollContainer.current?.clientHeight <
       2
     ) {
-      setTargRot(90);
+      setTargRot(270);
     } else {
-      setTargRot(0);
+      setTargRot(359.5);
+
+      // console.log(
+      //   "sc top: " +
+      //     scrollContainer.current.scrollTop +
+      //     " clientheight: " +
+      //     scrollContainer.current.clientHeight +
+      //     "scrollheight: " +
+      //     scrollContainer.current.scrollHeight
+      // );
     }
   }
   const styles = {
@@ -82,37 +109,48 @@ function ChatInputBar({
           transition={{ duration: standardTransDur * 1 }}
         >
           <div className="inputGroup">
-            <input type="text" className="textInput darkblurL2"></input>
+            <input
+              type="text"
+              className="textInput darkblurL2"
+              value={currentDraft}
+              onChange={handleInputDraft}
+              onBlur={validateInputDraft}
+            ></input>
             <button className="sendButton">S</button>
           </div>
         </motion.div>
       )}
 
       {visible && (
-        <motion.div
-          style={scrollBtnStyles}
-          key={"scrollDownButton"}
-          animate={{ rotate: targRot }}
-        >
+        <motion.div style={scrollBtnStyles} key={"scrollDownButton"}>
           <button
             className="scrollButton"
             onClick={() => {
               setScrollDownBtn(true);
+              checkRotateArrow();
             }}
           >
-            <FaArrowDown style={{ color: "var(--main-purple)" }} />
+            <motion.div
+              initial={{ rotate: 359 }}
+              animate={{ rotate: targRot }}
+              key={"arrowIcon"}
+            >
+              <FaArrowDown style={{ color: "var(--main-purple)" }} />
+            </motion.div>
           </button>
         </motion.div>
       )}
 
       <style jsx>{`
-        .barBG {
+         {
+          /* .barBG {
           position: fixed;
           left: 0;
           right: 0;
           bottom: 0;
           height: 5rem;
           width: 100%;
+        } */
         }
         .inputGroup {
           display: flex;
@@ -125,13 +163,16 @@ function ChatInputBar({
           background-color: rgb(40 40 40 /0.8);
           color: white;
           font-size: 1rem;
-          //outline: none;
+          outline: none;
           border: none;
           flex-grow: 1;
           height: 60%;
           height: 2rem;
           margin-left: 0.5rem;
           margin-right: 1rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+
           border-radius: 1.25rem 1.25rem;
         }
         .sendButton {
@@ -154,10 +195,20 @@ function ChatInputBar({
           font-size: 1.2rem;
           border: none;
           background: transparent;
+          cursor: pointer;
         }
       `}</style>
     </AnimatePresence>
   );
+
+  function handleInputDraft(e) {
+    const newDraft = e.target.value;
+    setCurrentDraft(newDraft);
+  }
+  function validateInputDraft(e) {
+    const newDraft = e.target.value;
+    setCurrentDraft(newDraft);
+  }
 }
 
 export default ChatInputBar;

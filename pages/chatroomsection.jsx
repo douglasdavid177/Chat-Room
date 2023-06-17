@@ -27,6 +27,11 @@ const ChatRoomSection = (props) => {
 
   useEffect(() => {
     if (!props.scrollDownBtn) return;
+
+    // console.log("scrollTop: " + props.scrollContainer.current?.scrollTop);
+    // console.log("clientheight: " + props.scrollContainer.current?.clientHeight);
+    // console.log("scrollHeight: " + props.scrollContainer.current?.scrollHeight);
+
     if (
       props.scrollContainer.current?.scrollHeight -
         props.scrollContainer.current?.scrollTop -
@@ -34,12 +39,9 @@ const ChatRoomSection = (props) => {
       2
     ) {
       props.setScrollDownBtn(false);
+      props.setNavPanelOpen(true);
       return;
     }
-
-    // console.log("scrollTop: " + props.scrollContainer.current?.scrollTop);
-    // console.log("innerheight: " + props.scrollContainer.current?.clientHeight);
-    // console.log("scrollHeight: " + props.scrollContainer.current?.scrollHeight);
 
     // console.log("scroll btn changed");
 
