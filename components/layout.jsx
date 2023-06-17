@@ -16,9 +16,13 @@ function Layout(props) {
   const [navPanelOpen, setNavPanelOpen] = useState(false);
   const [mainSectionKey, setMainSectionKey] = useState(0);
   const [actualMainSectionKey, setActualMainSectionKey] = useState(0);
-  const [myVal, setMyVal] = useState("David");
+  //const [myVal, setMyVal] = useState("David");
   const [showHeroImg, setShowHeroImg] = useState(true);
   const [scrollDownBtn, setScrollDownBtn] = useState(false);
+
+  const [fLName, setFLName] = useState("David Douglas");
+  const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const scrollContainer = useRef(null);
 
@@ -81,9 +85,9 @@ function Layout(props) {
     checkAndSetHeroImg();
   }
 
-  const fLName = "Davido Douglaso";
-  const emailAd = "douglasdavid177@gmail.com";
-  const loggedIn = true;
+  // const fLName = "Davido Douglaso";
+  // const emailAd = "douglasdavid177@gmail.com";
+  // const loggedIn = true;
 
   return (
     <div className={"container"}>
