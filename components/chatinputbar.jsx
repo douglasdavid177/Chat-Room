@@ -8,6 +8,7 @@ function ChatInputBar({
   scrollDownBtn,
   setScrollDownBtn,
   scrollContainer,
+  loggedIn,
 }) {
   const [targRot, setTargRot] = useState(90);
   const [currentDraft, setCurrentDraft] = useState("");
@@ -67,6 +68,7 @@ function ChatInputBar({
     }
   }
   const styles = {
+    //Framer Motion divs don't work with styled jsx classes
     position: "fixed",
     left: 0,
     right: 0,
@@ -108,16 +110,25 @@ function ChatInputBar({
           }}
           transition={{ duration: standardTransDur * 1 }}
         >
-          <div className="inputGroup">
-            <input
-              type="text"
-              className="textInput darkblurL2"
-              value={currentDraft}
-              onChange={handleInputDraft}
-              onBlur={validateInputDraft}
-            ></input>
-            <button className="sendButton">S</button>
-          </div>
+          {loggedIn ? (
+            <div className="inputGroup">
+              <input
+                type="text"
+                className="textInput darkblurL2"
+                value={currentDraft}
+                onChange={handleInputDraft}
+                onBlur={validateInputDraft}
+              ></input>
+              <button className="sendButton">S</button>
+            </div>
+          ) : (
+            <div className="inputGroup">
+              <p>
+                You must be logged in to send messages.{" "}
+                <button className="loginBtn">Log In</button>
+              </p>
+            </div>
+          )}
         </motion.div>
       )}
 
@@ -135,7 +146,7 @@ function ChatInputBar({
               animate={{ rotate: targRot }}
               key={"arrowIcon"}
             >
-              <FaArrowDown style={{ color: "var(--main-purple)" }} />
+              <FaArrowDown style={{ color: "#7d10bc" }} />
             </motion.div>
           </button>
         </motion.div>
@@ -195,6 +206,13 @@ function ChatInputBar({
           font-size: 1.2rem;
           border: none;
           background: transparent;
+          cursor: pointer;
+        }
+        .loginBtn {
+          background: none;
+          border: none;
+          color: var(--main-purple-on-black);
+          font-weight: bold;
           cursor: pointer;
         }
       `}</style>

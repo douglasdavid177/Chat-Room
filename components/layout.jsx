@@ -161,6 +161,7 @@ function Layout(props) {
               scrollContainer,
               scrollDownBtn,
               setScrollDownBtn,
+              setMainSectionKey, //mainly for action button on home screen
             })}
           </motion.div>
         </AnimatePresence>
@@ -171,6 +172,7 @@ function Layout(props) {
         scrollDownBtn={scrollDownBtn}
         setScrollDownBtn={setScrollDownBtn}
         scrollContainer={scrollContainer}
+        loggedIn={loggedIn}
       />
       <NavBar
         setNavPanelOpen={setNavPanelOpen}

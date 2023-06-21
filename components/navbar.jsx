@@ -46,7 +46,7 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName, mainSectionKey }) {
             aspect-ratio: 1;
             background: none;
             border: none;
-            outline: none;
+            //outline: none;
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -82,7 +82,7 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName, mainSectionKey }) {
           .loggedInStatus button {
             margin-top: 0rem;
             background: none;
-            outline: none;
+            //outline: none;
             border: none;
             min-width: 5rem;
             cursor: pointer;

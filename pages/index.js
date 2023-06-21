@@ -45,7 +45,13 @@ const HomeSection = (props) => {
                 ease: [0.1, 0.1, 0, 1],
               }}
             >
-              <button>Enter chat room</button>
+              <button
+                onClick={() => {
+                  props.setMainSectionKey(2);
+                }}
+              >
+                Enter chat room
+              </button>
             </motion.div>
 
             <LinkButton
@@ -109,7 +115,7 @@ const HomeSection = (props) => {
           border: none;
           font: inherit;
           cursor: pointer;
-          outline: inherit;
+          //outline: inherit;
           color: white;
           width: auto;
           min-width: 10.1rem;

@@ -86,7 +86,7 @@ const NavPanel = ({
             <div className={"messageContainer"}>
               <p>
                 {`
-Remember that ALL messages—sent and received—can be seen by anyone on the internet, and are not private. Toxic messages aren’t allowed. The security bot on duty will not hesitate to enforce this rule with a temporary ban.`}
+Remember that ALL messages—sent and received—can be seen by anyone on the internet, and are not private. Profane messages aren’t allowed. The security bot on duty will not hesitate to enforce this rule with a temporary ban.`}
               </p>
             </div>
           </div>
@@ -138,7 +138,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
         }
         .panel button {
           border: none;
-          outline: none;
+          //outline: none;
           background: none;
           color: white;
           cursor: pointer;

@@ -36,7 +36,7 @@ const LinkButton = ({ setNavPanelOpen, delayAmt }) => {
           border: none;
           font: inherit;
           cursor: pointer;
-          outline: inherit;
+          //outline: inherit;
           color: white;
           width: auto;
           min-width: 10.1rem;
