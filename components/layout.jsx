@@ -10,6 +10,26 @@ import HomeSection from "../pages/index";
 import AboutSection from "../pages/aboutsection";
 import ChatRoomSection from "../pages/chatroomsection";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCF_MuJZupudZGDBKcodfq4Mj8Bi3MmGaY",
+  authDomain: "davids-party-room.firebaseapp.com",
+  projectId: "davids-party-room",
+  storageBucket: "davids-party-room.appspot.com",
+  messagingSenderId: "650211449081",
+  appId: "1:650211449081:web:b2c164c8c2c3fae8782a28",
+  measurementId: "G-BD22FSMDY5",
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
 function Layout(props) {
   const router = useRouter();
 
@@ -20,9 +40,11 @@ function Layout(props) {
   const [showHeroImg, setShowHeroImg] = useState(true);
   const [scrollDownBtn, setScrollDownBtn] = useState(false);
 
-  const [fLName, setFLName] = useState("David Douglas");
+  const [fLName, setFLName] = useState("Davido Douglaso");
   const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const [user] = useAuthState(auth);
 
   const scrollContainer = useRef(null);
 
@@ -172,23 +194,30 @@ function Layout(props) {
         scrollDownBtn={scrollDownBtn}
         setScrollDownBtn={setScrollDownBtn}
         scrollContainer={scrollContainer}
-        loggedIn={loggedIn}
+        //loggedIn={loggedIn}
+        user={user}
+        logInOut={logInOut}
       />
       <NavBar
         setNavPanelOpen={setNavPanelOpen}
-        loggedIn={loggedIn}
+        //loggedIn={loggedIn}
+        user={user}
         fLName={fLName}
         emailAd={emailAd}
         mainSectionKey={mainSectionKey}
+        auth={auth}
+        logInOut={logInOut}
       />
       <NavPanel
         isOpen={navPanelOpen}
         setIsOpen={setNavPanelOpen}
         currentSectionKey={mainSectionKey}
         setSectionKey={setMainSectionKey}
-        loggedIn={loggedIn}
+        //loggedIn={loggedIn}
+        user={user}
         fLName={fLName}
         emailAd={emailAd}
+        logInOut={logInOut}
       />
       <style jsx>{`
         .container {
@@ -406,6 +435,14 @@ function Layout(props) {
       return true;
     }
     return false;
+  }
+  function logInOut() {
+    if (user) {
+      auth.signOut();
+    } else {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider);
+    }
   }
 }
 

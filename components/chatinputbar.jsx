@@ -9,6 +9,8 @@ function ChatInputBar({
   setScrollDownBtn,
   scrollContainer,
   loggedIn,
+  user,
+  logInOut,
 }) {
   const [targRot, setTargRot] = useState(90);
   const [currentDraft, setCurrentDraft] = useState("");
@@ -83,54 +85,83 @@ function ChatInputBar({
     bottom: "3rem",
   };
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          style={styles}
-          className="darkblur" // barBG has to be applied as direct styes for some reason
-          key={"barBG"}
-          initial={{
-            y: "101%",
-          }}
-          animate={{
-            // scale: 1,
-            y: "0%",
+    <div>
+      <AnimatePresence mode="wait">
+        {visible &&
+          (user ? (
+            <motion.div
+              style={styles}
+              className="darkblur" // barBG has to be applied as direct styes for some reason
+              key={"barBGLoggedIn"}
+              initial={{
+                y: "101%",
+              }}
+              animate={{
+                // scale: 1,
+                y: "0%",
 
-            // opacity: 1,
-            transition: {
-              duration: standardTransDur,
-              //delay: standardTransDur,
-            },
-          }}
-          exit={{
-            //scale: 1,
-            y: "100%",
+                // opacity: 1,
+                transition: {
+                  duration: standardTransDur,
+                  //delay: standardTransDur,
+                },
+              }}
+              exit={{
+                //scale: 1,
+                y: "100%",
 
-            //opacity: 0,
-          }}
-          transition={{ duration: standardTransDur * 1 }}
-        >
-          {loggedIn ? (
-            <div className="inputGroup">
-              <input
-                type="text"
-                className="textInput darkblurL2"
-                value={currentDraft}
-                onChange={handleInputDraft}
-                onBlur={validateInputDraft}
-              ></input>
-              <button className="sendButton">S</button>
-            </div>
+                //opacity: 0,
+              }}
+              transition={{ duration: standardTransDur * 1 }}
+            >
+              <div className="inputGroup">
+                <input
+                  type="text"
+                  className="textInput darkblurL2"
+                  value={currentDraft}
+                  onChange={handleInputDraft}
+                  onBlur={validateInputDraft}
+                ></input>
+                <button className="sendButton">S</button>
+              </div>
+            </motion.div>
           ) : (
-            <div className="inputGroup">
-              <p>
-                You must be logged in to send messages.{" "}
-                <button className="loginBtn">Log In</button>
-              </p>
-            </div>
-          )}
-        </motion.div>
-      )}
+            <motion.div
+              style={styles}
+              className="darkblur" // barBG has to be applied as direct styes for some reason
+              key={"barBGNotLoggedIn"}
+              initial={{
+                y: "101%",
+              }}
+              animate={{
+                // scale: 1,
+                y: "0%",
+
+                // opacity: 1,
+                transition: {
+                  duration: standardTransDur,
+                  //delay: standardTransDur,
+                },
+              }}
+              exit={{
+                //scale: 1,
+                y: "100%",
+
+                //opacity: 0,
+              }}
+              transition={{ duration: standardTransDur * 1 }}
+            >
+              <div className="inputGroup">
+                <p>
+                  You must be logged in to send messages.{" "}
+                  <button className="loginBtn" onClick={logInOut}>
+                    Log In
+                  </button>
+                </p>
+              </div>
+            </motion.div>
+          ))}
+      </AnimatePresence>
 
       {visible && (
         <motion.div style={scrollBtnStyles} key={"scrollDownButton"}>
@@ -216,7 +247,7 @@ function ChatInputBar({
           cursor: pointer;
         }
       `}</style>
-    </AnimatePresence>
+    </div>
   );
 
   function handleInputDraft(e) {

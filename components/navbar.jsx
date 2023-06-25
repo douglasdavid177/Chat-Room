@@ -1,4 +1,14 @@
-function NavBar({ setNavPanelOpen, loggedIn, fLName, mainSectionKey }) {
+import firebase from "firebase/compat/app";
+//import "firebase/compat/auth";
+function NavBar({
+  setNavPanelOpen,
+  loggedIn,
+  fLName,
+  mainSectionKey,
+  user,
+  auth,
+  logInOut,
+}) {
   return (
     <div className="navbar darkblur transparentBG">
       <div className={"hamburgerHolder"}>
@@ -13,9 +23,14 @@ function NavBar({ setNavPanelOpen, loggedIn, fLName, mainSectionKey }) {
       </div>
       {mainSectionKey == 2 && <h4 className="centered">Chat Room</h4>}
       <div className="loggedInStatus rightTextAlign">
-        <p>{loggedIn ? fLName : "Not logged in."}</p>
-        <button className="rightTextAlign">
-          <p>{loggedIn ? "Log out" : "Log in"}</p>
+        <p>{user ? user.displayName : "Not logged in."}</p>
+        <button
+          className="rightTextAlign"
+          onClick={() => {
+            logInOut();
+          }}
+        >
+          <p>{user ? "Log out" : "Log in"}</p>
           {/* <p>{loggedIn ? "View profile" : "Log in"}</p> */}
         </button>
       </div>

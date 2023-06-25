@@ -15,13 +15,16 @@ const NavPanel = ({
   loggedIn,
   fLName,
   emailAd,
+  user,
+  logInOut,
 }) => {
   const [comingSoonWarning, setComingSoonWarning] = useState(false);
-  const [dummyVar, setDummyVar] = useState(false);
+  //const [dummyVar, setDummyVar] = useState(false);
   const badge = useRef();
 
   // This prevents the nav panel opening with the warning badge visible
   useEffect(() => {
+    console.log(user);
     cancelAnim();
   }, [isOpen]);
 
@@ -483,37 +486,51 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
     return (
       <div className="userInfoSectionContainer darkblurL2">
         <div className="userInfoSection">
-          <div className="userPicHolder"></div>
+          <div className="userPicHolder">
+            {user && (
+              <img
+                src={user.photoURL}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "5000rem 5000rem",
+                }}
+                alt="profile pic"
+              />
+            )}
+          </div>
           <div className="userInfoTextHolder">
             {/* {!loggedIn && <p className="label">Not logged in.</p>} */}
 
             <p className="label">
               {" "}
               {/* {loggedIn ? "Logged in as:" : "Not logged in."} */}
-              {loggedIn ? "Display name:" : "Not logged in."}
+              {user ? "Display name:" : "Not logged in."}
             </p>
             <p>
-              {loggedIn ? (
-                <span>{fLName}</span>
+              {user ? (
+                <span>{user.displayName}</span>
               ) : (
-                <button className="linkButton">Log in</button>
+                <button className="linkButton" onClick={logInOut}>
+                  Log in
+                </button>
               )}
             </p>
             {/* {loggedIn && <button className="linkButton">Edit</button>} */}
-            {loggedIn && <p className="label">Sending allowed</p>}
+            {user && <p className="label">Sending allowed</p>}
           </div>
         </div>
         {/* <p className="emailText">No email address. Not logged in.</p> */}
 
         <p className="emailText">
-          {loggedIn && (
+          {user && (
             <span className="label">
               Profile email address:
               <br />
             </span>
           )}
-          {loggedIn ? (
-            emailAd
+          {user ? (
+            user.email
           ) : (
             <span className="label">
               You must be logged in to send messages
