@@ -75,7 +75,7 @@ const ChatRoomSection = (props) => {
             {/* <div className="chatroomSection"> */}
             {/* <h3>Chat Room</h3> */}
 
-            <ChatBubble
+            {/* <ChatBubble
               key={"first"}
               user={props.user}
               //message={messages ? messages[1] : { text: "maybe?" }}
@@ -98,7 +98,7 @@ const ChatRoomSection = (props) => {
               heres some more message text, from the user
             </ChatBubble>
 
-            <ChatBubble fromUser={false}>heres some message text</ChatBubble>
+            <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
             {messages.map((msg) => (
               <ChatBubble
@@ -112,9 +112,9 @@ const ChatRoomSection = (props) => {
           <motion.div
             key={"loadtxt"}
             exit={{
-              translateY: -15,
+              translateY: -5,
               opacity: 0,
-              transition: { duration: 0.75 },
+              transition: { duration: 0.7 },
             }}
           >
             <p className="loadingText"> Loading...</p>
@@ -146,12 +146,14 @@ const ChatRoomSection = (props) => {
           margin: 0;
         }
         .loadingText {
+          color: rgba(255 255 255 /0.5);
           color: rgba(130 130 130);
           align-self: center;
           text-align: center;
           position: absolute;
           left: 0;
           right: 0;
+          transform: translateY(-0.75rem);
         }
         .prevMsgsText {
           color: rgba(130 130 130);
