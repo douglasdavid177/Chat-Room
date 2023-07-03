@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-function ChatBubble({ children, fromUser = false }) {
+function ChatBubble(props) {
+  const fromUser = props.message?.forceFromUser
+    ? true
+    : props.user && props.user.uid == props.message?.uid;
+
   const messageAnim = {
     hidden: { opacity: 0, x: -25, y: 5 },
     show: { opacity: 1, x: 0, y: 0, transition: { duration: 0.35 } },
@@ -19,7 +23,8 @@ function ChatBubble({ children, fromUser = false }) {
       style={messageStyles}
     >
       <div className={`bubble ${fromUser ? "fromUser" : ""}`}>
-        <p>{children}</p>
+        <p>{props.message?.text}</p>
+        {props.hiddenTxt ? <p>{props.hiddenTxt}</p> : ""}
 
         <style jsx>{`
           .bubble {

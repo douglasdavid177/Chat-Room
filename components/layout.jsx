@@ -15,7 +15,6 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCF_MuJZupudZGDBKcodfq4Mj8Bi3MmGaY",
@@ -167,6 +166,10 @@ function Layout(props) {
             animate={{
               translateY: 0,
               opacity: 1,
+              transition: {
+                duration:
+                  numberFromRoute(router.asPath) != 2 ? standardTransDur : 0, // Don't fade in chatroom page bc its blank on load anyway, minus the loading text
+              },
             }}
             exit={{
               translateY: -30,
@@ -179,11 +182,13 @@ function Layout(props) {
           >
             {/* {componentFromKey(mainSectionKey)} */}
             {React.cloneElement(props.children, {
+              firestore,
               setNavPanelOpen,
               scrollContainer,
               scrollDownBtn,
               setScrollDownBtn,
               setMainSectionKey, //mainly for action button on home screen
+              user, // for chatroom to know which color to make bubbles
             })}
           </motion.div>
         </AnimatePresence>

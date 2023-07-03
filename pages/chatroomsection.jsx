@@ -1,11 +1,21 @@
 import LinkButton from "../components/linkbutton";
 import ChatBubble from "../components/chatbubble";
 import ChatInputBar from "../components/chatinputbar";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const ChatRoomSection = (props) => {
+  const messagesRef = props.firestore.collection("messages");
+  const query = messagesRef.orderBy("createdAt").limit(30);
+  const [messages] = useCollectionData(query, { idField: "id" });
+
   const bottomAnchorRef = useRef(null);
+
+  // useEffect(() => {
+  //   console.log(messages);
+  // }, [messages]);
+
   const container = {
     hidden: false,
     show: {
@@ -19,11 +29,12 @@ const ChatRoomSection = (props) => {
   };
 
   useEffect(() => {
+    if (messagesRef.count < 2) return;
     //props.scrollContainer.current?.scrollTo({})
     setTimeout(() => {
-      bottomAnchorRef.current?.scrollIntoView();
-    }, 20);
-  }, []);
+      bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }, [messages]);
 
   useEffect(() => {
     if (!props.scrollDownBtn) return;
@@ -49,32 +60,69 @@ const ChatRoomSection = (props) => {
     props.setScrollDownBtn(false);
   }, [props.scrollDownBtn]);
   return (
-    <div>
-      <motion.div variants={container} initial="hidden" animate="show">
-        <div className="chatroomSection">
-          {/* <h3>Chat Room</h3> */}
+    <div className="chatroomSection">
+      <p className="prevMsgsText">
+        Viewing older messages requires database access
+      </p>
+      <AnimatePresence>
+        {messages ? (
+          <motion.div
+            key={"room"}
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {/* <div className="chatroomSection"> */}
+            {/* <h3>Chat Room</h3> */}
 
-          <ChatBubble fromUser={false}>heres some message text</ChatBubble>
+            <ChatBubble
+              key={"first"}
+              user={props.user}
+              //message={messages ? messages[1] : { text: "maybe?" }}
+            >
+              heres some message text
+            </ChatBubble>
 
-          <ChatBubble fromUser={true}>
-            heres some more message text, from the user
-          </ChatBubble>
+            <ChatBubble fromUser={true} hiddenTxt={"n stuff"}>
+              heres some more message text, from the user
+            </ChatBubble>
 
-          <ChatBubble fromUser={false}>heres some message text</ChatBubble>
+            <ChatBubble fromUser={false}>heres some message text</ChatBubble>
 
-          <ChatBubble fromUser={false}>
-            heres some message text, this time with a few more words, hopefully
-            enough to create mutliple lines
-          </ChatBubble>
+            <ChatBubble fromUser={false} hiddenTxt={"n stuff"}>
+              heres some message text, this time with a few more words,
+              hopefully enough to create mutliple lines n stuff...
+            </ChatBubble>
 
-          <ChatBubble fromUser={true}>
-            heres some more message text, from the user
-          </ChatBubble>
+            <ChatBubble fromUser={true}>
+              heres some more message text, from the user
+            </ChatBubble>
 
-          <ChatBubble fromUser={false}>heres some message text</ChatBubble>
-          <div className="bottomAnchor" ref={bottomAnchorRef}></div>
-        </div>
-      </motion.div>
+            <ChatBubble fromUser={false}>heres some message text</ChatBubble>
+
+            {messages.map((msg) => (
+              <ChatBubble
+                key={toString(msg.createdAt)}
+                message={msg}
+                user={props.user}
+              />
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key={"loadtxt"}
+            exit={{
+              translateY: -15,
+              opacity: 0,
+              transition: { duration: 0.75 },
+            }}
+          >
+            <p className="loadingText"> Loading...</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="bottomAnchor" ref={bottomAnchorRef}></div>
 
       <style jsx>{`
         .chatroomSection {
@@ -85,7 +133,8 @@ const ChatRoomSection = (props) => {
           margin-top: 0;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
+          position: relative;
         }
         h3 {
           text-align: center;
@@ -95,6 +144,23 @@ const ChatRoomSection = (props) => {
           width0: 0;
           padding: 0;
           margin: 0;
+        }
+        .loadingText {
+          color: rgba(130 130 130);
+          align-self: center;
+          text-align: center;
+          position: absolute;
+          left: 0;
+          right: 0;
+        }
+        .prevMsgsText {
+          color: rgba(130 130 130);
+          align-self: center;
+          text-align: center;
+          position: absolute;
+          top: 2rem;
+          left: 0;
+          right: 0;
         }
       `}</style>
     </div>
