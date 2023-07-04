@@ -80,8 +80,7 @@ const ChatRoomSection = (props) => {
           >
             {" "}
             <p className="prevMsgsText">
-              Viewing older messages requires database access. scrollTop:{" "}
-              {scrollTop}
+              Viewing older messages requires database access
             </p>
           </motion.div>
         )}
