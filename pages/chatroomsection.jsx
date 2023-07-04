@@ -70,10 +70,21 @@ const ChatRoomSection = (props) => {
 
   return (
     <div className="chatroomSection">
-      <p className="prevMsgsText">
-        Viewing older messages requires database access. scrollTop: {scrollTop}
-      </p>
       <AnimatePresence>
+        {scrollTop < -20 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            {" "}
+            <p className="prevMsgsText">
+              Viewing older messages requires database access. scrollTop:{" "}
+              {scrollTop}
+            </p>
+          </motion.div>
+        )}
         {messages ? (
           <motion.div
             key={"room"}
