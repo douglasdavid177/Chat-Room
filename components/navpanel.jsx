@@ -24,7 +24,7 @@ const NavPanel = ({
 
   // This prevents the nav panel opening with the warning badge visible
   useEffect(() => {
-    console.log(user);
+    //console.log(user);
     cancelAnim();
   }, [isOpen]);
 

@@ -9,6 +9,7 @@ const ChatRoomSection = (props) => {
   const messagesRef = props.firestore.collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(30);
   const [messages] = useCollectionData(query, { idField: "id" });
+  const [scrollTop, setScrollTop] = useState(0);
 
   const bottomAnchorRef = useRef(null);
 
@@ -23,10 +24,17 @@ const ChatRoomSection = (props) => {
 
       transition: {
         staggerChildren: 0.085,
-        delayChildren: 0.1,
+        delayChildren: 0.3,
       },
     },
   };
+
+  useEffect(() => {
+    props.scrollContainer.current.addEventListener("scroll", checkScroll);
+    return () => {
+      props.scrollContainer.current.removeEventListener("scroll", checkScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (messagesRef.count < 2) return;
@@ -59,10 +67,11 @@ const ChatRoomSection = (props) => {
     bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
     props.setScrollDownBtn(false);
   }, [props.scrollDownBtn]);
+
   return (
     <div className="chatroomSection">
       <p className="prevMsgsText">
-        Viewing older messages requires database access
+        Viewing older messages requires database access. scrollTop: {scrollTop}
       </p>
       <AnimatePresence>
         {messages ? (
@@ -72,9 +81,6 @@ const ChatRoomSection = (props) => {
             initial="hidden"
             animate="show"
           >
-            {/* <div className="chatroomSection"> */}
-            {/* <h3>Chat Room</h3> */}
-
             {/* <ChatBubble
               key={"first"}
               user={props.user}
@@ -100,21 +106,17 @@ const ChatRoomSection = (props) => {
 
             <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
-            {messages.map((msg) => (
-              <ChatBubble
-                key={toString(msg.createdAt)}
-                message={msg}
-                user={props.user}
-              />
+            {messages.map((msg, ind) => (
+              <ChatBubble key={ind} message={msg} user={props.user} />
             ))}
           </motion.div>
         ) : (
           <motion.div
             key={"loadtxt"}
             exit={{
-              translateY: -5,
+              translateY: -15,
               opacity: 0,
-              transition: { duration: 0.7 },
+              transition: { duration: 0.5 },
             }}
           >
             <p className="loadingText"> Loading...</p>
@@ -167,6 +169,10 @@ const ChatRoomSection = (props) => {
       `}</style>
     </div>
   );
+  function checkScroll(e) {
+    const newScrollTop = props.scrollContainer.current.scrollTop;
+    setScrollTop(newScrollTop);
+  }
 };
 
 export default ChatRoomSection;
