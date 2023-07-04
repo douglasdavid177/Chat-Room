@@ -38,6 +38,8 @@ function Layout(props) {
   //const [myVal, setMyVal] = useState("David");
   const [showHeroImg, setShowHeroImg] = useState(true);
   const [scrollDownBtn, setScrollDownBtn] = useState(false);
+  const [scrollDownBtnPointedDown, setScrollDownBtnPointedDown] =
+    useState(false);
 
   const [fLName, setFLName] = useState("Davido Douglaso");
   const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
@@ -186,6 +188,7 @@ function Layout(props) {
               setNavPanelOpen,
               scrollContainer,
               scrollDownBtn,
+              scrollDownBtnPointedDown,
               setScrollDownBtn,
               setMainSectionKey, //mainly for action button on home screen
               user, // for chatroom to know which color to make bubbles
@@ -196,8 +199,9 @@ function Layout(props) {
       <ChatInputBar
         visible={numberFromRoute(router.asPath) == 2}
         standardTransDur={standardTransDur}
-        scrollDownBtn={scrollDownBtn}
+        // scrollDownBtn={scrollDownBtn}
         setScrollDownBtn={setScrollDownBtn}
+        setScrollDownBtnPointedDown={setScrollDownBtnPointedDown}
         scrollContainer={scrollContainer}
         //loggedIn={loggedIn}
         user={user}

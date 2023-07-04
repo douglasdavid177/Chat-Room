@@ -47,25 +47,23 @@ const ChatRoomSection = (props) => {
   useEffect(() => {
     if (!props.scrollDownBtn) return;
 
-    // console.log("scrollTop: " + props.scrollContainer.current?.scrollTop);
-    // console.log("clientheight: " + props.scrollContainer.current?.clientHeight);
-    // console.log("scrollHeight: " + props.scrollContainer.current?.scrollHeight);
-
     if (
+      props.scrollDownBtnPointedDown ||
       props.scrollContainer.current?.scrollHeight -
         props.scrollContainer.current?.scrollTop -
-        props.scrollContainer.current?.clientHeight <
-      2
+        props.scrollContainer.current?.clientHeight >
+        2
     ) {
+      bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
       props.setScrollDownBtn(false);
-      props.setNavPanelOpen(true);
+
       return;
     }
 
     // console.log("scroll btn changed");
 
-    bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
     props.setScrollDownBtn(false);
+    props.setNavPanelOpen(true);
   }, [props.scrollDownBtn]);
 
   return (
@@ -75,7 +73,7 @@ const ChatRoomSection = (props) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.1 } }}
             transition={{ duration: 0.35 }}
           >
             {" "}

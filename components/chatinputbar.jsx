@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 function ChatInputBar({
   visible,
   standardTransDur,
-  scrollDownBtn,
+  //scrollDownBtn,
   setScrollDownBtn,
+  setScrollDownBtnPointedDown,
   scrollContainer,
   loggedIn,
   user,
@@ -56,8 +57,10 @@ function ChatInputBar({
       2
     ) {
       setTargRot(270);
+      setScrollDownBtnPointedDown(false);
     } else {
       setTargRot(359.5);
+      setScrollDownBtnPointedDown(true);
 
       // console.log(
       //   "sc top: " +
