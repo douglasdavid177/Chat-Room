@@ -54,8 +54,8 @@ const ChatRoomSection = (props) => {
         props.scrollContainer.current?.clientHeight >
         2
     ) {
-      bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
       props.setScrollDownBtn(false);
+      bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
 
       return;
     }
@@ -69,7 +69,7 @@ const ChatRoomSection = (props) => {
   return (
     <div className="chatroomSection">
       <AnimatePresence>
-        {scrollTop < -20 && (
+        {scrollTop < -32 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -169,8 +169,8 @@ const ChatRoomSection = (props) => {
           color: rgba(130 130 130);
           align-self: center;
           text-align: center;
-          position: absolute;
-          top: 2rem;
+          position: fixed;
+          top: 3.5rem;
           left: 0;
           right: 0;
         }

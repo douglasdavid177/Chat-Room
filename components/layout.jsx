@@ -52,6 +52,10 @@ function Layout(props) {
   const standardTransDur = 0.35;
 
   useEffect(() => {
+    console.log(scrollDownBtnPointedDown);
+  }, [scrollDownBtnPointedDown]);
+
+  useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
     setActualMainSectionKey(numberFromRoute(router.asPath));
   }, []);

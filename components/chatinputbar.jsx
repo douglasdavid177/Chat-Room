@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowDown, FaArrowLeft } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function ChatInputBar({
   visible,
@@ -16,40 +16,7 @@ function ChatInputBar({
   const [targRot, setTargRot] = useState(90);
   const [currentDraft, setCurrentDraft] = useState("");
 
-  useEffect(() => {
-    const cont = scrollContainer?.current;
-    if (cont == undefined || cont == null) return;
-    console.log("cont:");
-    console.log(cont);
-    // cont.onScroll = checkRotateArrow;
-
-    cont.addEventListener("scroll", checkRotateArrow);
-    cont.addEventListener("resize", checkRotateArrow);
-    //cont.addEventListener("orientationchange", checkRotateArrow);
-
-    checkRotateArrow();
-
-    return () => {
-      cont.removeEventListener("scroll", checkRotateArrow);
-      cont.removeEventListener("resize", checkRotateArrow);
-      //cont.removeEventListener("orientationchange", checkRotateArrow);
-    };
-  }, []);
-
-  useEffect(() => {
-    checkRotateArrow();
-  }, [visible]);
-
-  function test() {
-    console.log("changed orientation");
-  }
-
-  useEffect(() => {
-    //checkRotateArrow();
-  }, [scrollContainer.current?.scrollTop]);
-
-  function checkRotateArrow() {
-    // console.log("test");
+  const checkRotateArrow = useCallback(() => {
     if (
       scrollContainer.current?.scrollHeight -
         scrollContainer.current?.scrollTop -
@@ -61,17 +28,28 @@ function ChatInputBar({
     } else {
       setTargRot(359.5);
       setScrollDownBtnPointedDown(true);
-
-      // console.log(
-      //   "sc top: " +
-      //     scrollContainer.current.scrollTop +
-      //     " clientheight: " +
-      //     scrollContainer.current.clientHeight +
-      //     "scrollheight: " +
-      //     scrollContainer.current.scrollHeight
-      // );
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    checkRotateArrow();
+
+    const cont = scrollContainer?.current;
+    if (cont == undefined || cont == null) return;
+    console.log("cont:");
+    console.log(cont);
+
+    if (visible) {
+      cont.addEventListener("scroll", checkRotateArrow);
+      cont.addEventListener("resize", checkRotateArrow);
+      cont.addEventListener("orientationchange", checkRotateArrow);
+    } else {
+      cont.removeEventListener("scroll", checkRotateArrow);
+      cont.removeEventListener("resize", checkRotateArrow);
+      cont.removeEventListener("orientationchange", checkRotateArrow);
+    }
+  }, [visible]);
+
   const styles = {
     //Framer Motion divs don't work with styled jsx classes
     position: "fixed",
@@ -170,8 +148,8 @@ function ChatInputBar({
         <motion.div style={scrollBtnStyles} key={"scrollDownButton"}>
           <button
             className="scrollButton"
-            onClick={() => {
-              setScrollDownBtn(true);
+            onClick={async () => {
+              await setScrollDownBtn(true);
               checkRotateArrow();
             }}
           >
