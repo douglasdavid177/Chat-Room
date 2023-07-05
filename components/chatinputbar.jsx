@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowDown, FaArrowLeft } from "react-icons/fa";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Router from "next/router";
 
 function ChatInputBar({
   visible,
@@ -9,12 +10,16 @@ function ChatInputBar({
   setScrollDownBtn,
   setScrollDownBtnPointedDown,
   scrollContainer,
+  scrollHeight,
+  setInputBarHeightPx,
   loggedIn,
   user,
   logInOut,
 }) {
   const [targRot, setTargRot] = useState(90);
   const [currentDraft, setCurrentDraft] = useState("");
+  const [textAreaHeightPx, setTextAreaHeightPx] = useState(32);
+  const textArea = useRef(null);
 
   const checkRotateArrow = useCallback(() => {
     if (
@@ -33,37 +38,43 @@ function ChatInputBar({
 
   useEffect(() => {
     checkRotateArrow();
+  }, [scrollHeight]);
 
+  useEffect(() => {
     const cont = scrollContainer?.current;
     if (cont == undefined || cont == null) return;
     console.log("cont:");
     console.log(cont);
 
+    //checkRotateArrow();
+    adjustTextAreaHeight();
+
     if (visible) {
       cont.addEventListener("scroll", checkRotateArrow);
       window.addEventListener("resize", checkRotateArrow);
-      window.addEventListener("orientationchange", checkRotateArrow);
+      //window.addEventListener("orientationchange", checkRotateArrow);
     } else {
       cont.removeEventListener("scroll", checkRotateArrow);
       window.removeEventListener("resize", checkRotateArrow);
-      window.removeEventListener("orientationchange", checkRotateArrow);
+      //window.removeEventListener("orientationchange", checkRotateArrow);
+      setCurrentDraft("");
     }
-  }, [visible]);
+  }, [visible, scrollContainer.current]);
 
-  const styles = {
+  const bgStyles = {
     //Framer Motion divs don't work with styled jsx classes
     position: "fixed",
     left: 0,
     right: 0,
     bottom: 0,
-    height: "3.5rem",
+    height: `${textAreaHeightPx + 24}px`,
     width: "100%",
   };
   const scrollBtnStyles = {
     position: "fixed",
     left: "1.5rem",
     right: 0,
-    bottom: "3rem",
+    bottom: `${textAreaHeightPx + 16}px`,
   };
   return (
     <div>
@@ -71,7 +82,7 @@ function ChatInputBar({
         {visible &&
           (user ? (
             <motion.div
-              style={styles}
+              style={bgStyles}
               className="darkblur" // barBG has to be applied as direct styes for some reason
               key={"barBGLoggedIn"}
               initial={{
@@ -96,19 +107,19 @@ function ChatInputBar({
               transition={{ duration: standardTransDur * 1 }}
             >
               <div className="inputGroup">
-                <input
-                  type="text"
+                <textarea
+                  ref={textArea}
                   className="textInput darkblurL2"
                   value={currentDraft}
                   onChange={handleInputDraft}
                   onBlur={validateInputDraft}
-                ></input>
+                ></textarea>
                 <button className="sendButton">S</button>
               </div>
             </motion.div>
           ) : (
             <motion.div
-              style={styles}
+              style={bgStyles}
               className="darkblur" // barBG has to be applied as direct styes for some reason
               key={"barBGNotLoggedIn"}
               initial={{
@@ -145,7 +156,12 @@ function ChatInputBar({
       </AnimatePresence>
 
       {visible && (
-        <motion.div style={scrollBtnStyles} key={"scrollDownButton"}>
+        <motion.div
+          style={scrollBtnStyles}
+          key={"scrollDownButton"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 0.4, duration: 0.1 } }}
+        >
           <button
             className="scrollButton"
             onClick={async () => {
@@ -154,7 +170,7 @@ function ChatInputBar({
             }}
           >
             <motion.div
-              initial={{ rotate: 359 }}
+              initial={{ rotate: targRot }}
               animate={{ rotate: targRot }}
               key={"arrowIcon"}
             >
@@ -184,19 +200,23 @@ function ChatInputBar({
         }
         .textInput {
           background-color: rgb(40 40 40 /0.8);
+          //background: blue;
           color: white;
           font-size: 1rem;
           outline: none;
           border: none;
           flex-grow: 1;
-          height: 60%;
-          height: 2rem;
+          //height: 60%;
+          min-height: 2rem;
           margin-left: 0.5rem;
           margin-right: 1rem;
           padding-left: 1rem;
           padding-right: 1rem;
-
+          padding-top: 0.5rem;
+          padding-bottom: 8px;
           border-radius: 1.25rem 1.25rem;
+          overflow-wrap: break-word;
+          resize: none;
         }
         .sendButton {
           //all: unset;
@@ -232,12 +252,26 @@ function ChatInputBar({
   );
 
   function handleInputDraft(e) {
-    const newDraft = e.target.value;
+    const bar = e.target;
+    const newDraft = bar.value;
+    adjustTextAreaHeight();
     setCurrentDraft(newDraft);
   }
   function validateInputDraft(e) {
     const newDraft = e.target.value;
     setCurrentDraft(newDraft);
+    //Upload
+    setCurrentDraft("");
+  }
+  function adjustTextAreaHeight() {
+    if (!textArea.current) return;
+    textArea.current.style.height = "2rem";
+    let newHeight = textArea.current.scrollHeight;
+    if (newHeight > 90) newHeight = 90;
+
+    textArea.current.style.height = `${newHeight}px`;
+    setTextAreaHeightPx(newHeight);
+    setInputBarHeightPx(newHeight + 24);
   }
 }
 

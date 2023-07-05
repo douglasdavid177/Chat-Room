@@ -41,6 +41,9 @@ function Layout(props) {
   const [scrollDownBtnPointedDown, setScrollDownBtnPointedDown] =
     useState(false);
 
+  const [scrollHeight, setScrollHeight] = useState(0);
+  const [inputBarHeightPx, setInputBarHeightPx] = useState(56);
+
   const [fLName, setFLName] = useState("Davido Douglaso");
   const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -56,8 +59,31 @@ function Layout(props) {
   }, [scrollDownBtnPointedDown]);
 
   useEffect(() => {
+    // const myresizeObserver = new ResizeObserver((cont) => {
+    //   console.log("resizeddd");
+    //   console.log(scrollContainer.current.scrollHeight);
+    //   setScrollHeight(scrollContainer.current.scrollHeight);
+    // });
+
+    // for (let i = 0; i < scrollContainer.current.children.length; i++) {
+    //   myresizeObserver.observe(scrollContainer.current.children[i]);
+    // }
+
+    // return () => {
+    //   for (let i = 0; i < scrollContainer.current.children.length; i++) {
+    //     myresizeObserver.unobserve(scrollContainer.current.children[i]);
+    //   }
+    // };
+    setScrollHeight(scrollContainer.current?.scrollHeight);
+    console.log("test..");
+  });
+
+  useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
     setActualMainSectionKey(numberFromRoute(router.asPath));
+
+    //myresizeObserver.observe(scrollContainer.current);
+    //return () => myresizeObserver.unobserve(scrollContainer.current);
   }, []);
   useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
@@ -196,6 +222,7 @@ function Layout(props) {
               setScrollDownBtn,
               setMainSectionKey, //mainly for action button on home screen
               user, // for chatroom to know which color to make bubbles
+              inputBarHeightPx,
             })}
           </motion.div>
         </AnimatePresence>
@@ -207,6 +234,8 @@ function Layout(props) {
         setScrollDownBtn={setScrollDownBtn}
         setScrollDownBtnPointedDown={setScrollDownBtnPointedDown}
         scrollContainer={scrollContainer}
+        scrollHeight={scrollHeight}
+        setInputBarHeightPx={setInputBarHeightPx}
         //loggedIn={loggedIn}
         user={user}
         logInOut={logInOut}

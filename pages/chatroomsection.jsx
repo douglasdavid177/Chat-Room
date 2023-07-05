@@ -34,11 +34,12 @@ const ChatRoomSection = (props) => {
     return () => {
       props.scrollContainer.current.removeEventListener("scroll", checkScroll);
     };
-  }, []);
+  }, [props.scrollContainer.current]);
 
   useEffect(() => {
     if (messagesRef.count < 2) return;
     //props.scrollContainer.current?.scrollTo({})
+
     setTimeout(() => {
       bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
@@ -67,7 +68,10 @@ const ChatRoomSection = (props) => {
   }, [props.scrollDownBtn]);
 
   return (
-    <div className="chatroomSection">
+    <div
+      className="chatroomSection"
+      style={{ paddingBottom: `${props.inputBarHeightPx + 24}px` }}
+    >
       <AnimatePresence>
         {scrollTop < -32 && (
           <motion.div
@@ -115,7 +119,11 @@ const ChatRoomSection = (props) => {
             <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
             {messages.map((msg, ind) => (
-              <ChatBubble key={ind} message={msg} user={props.user} />
+              <ChatBubble
+                key={msg.createdAt.toDate().toString()}
+                message={msg}
+                user={props.user}
+              />
             ))}
           </motion.div>
         ) : (
@@ -139,7 +147,7 @@ const ChatRoomSection = (props) => {
           //background: red;
           //flex-grow: 1;
           padding-top: 4rem;
-          padding-bottom: 5rem;
+          // Padding bottom applied as inline style
           margin-top: 0;
           display: flex;
           flex-direction: column;
@@ -170,7 +178,7 @@ const ChatRoomSection = (props) => {
           align-self: center;
           text-align: center;
           position: fixed;
-          top: 3.5rem;
+          top: 3.05rem;
           left: 0;
           right: 0;
         }
