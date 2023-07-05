@@ -41,12 +41,12 @@ function ChatInputBar({
 
     if (visible) {
       cont.addEventListener("scroll", checkRotateArrow);
-      cont.addEventListener("resize", checkRotateArrow);
-      cont.addEventListener("orientationchange", checkRotateArrow);
+      window.addEventListener("resize", checkRotateArrow);
+      window.addEventListener("orientationchange", checkRotateArrow);
     } else {
       cont.removeEventListener("scroll", checkRotateArrow);
-      cont.removeEventListener("resize", checkRotateArrow);
-      cont.removeEventListener("orientationchange", checkRotateArrow);
+      window.removeEventListener("resize", checkRotateArrow);
+      window.removeEventListener("orientationchange", checkRotateArrow);
     }
   }, [visible]);
 
