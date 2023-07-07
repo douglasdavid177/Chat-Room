@@ -75,13 +75,14 @@ function Layout(props) {
     //   }
     // };
     setScrollHeight(scrollContainer.current?.scrollHeight);
-    console.log("test..");
+    //console.log("test..");
   });
 
   useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
     setActualMainSectionKey(numberFromRoute(router.asPath));
 
+    console.log(user);
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
   }, []);
@@ -267,9 +268,10 @@ function Layout(props) {
           justify-content: center;
           align-items: flex-start;
           position: fixed;
-          left: 0;
-          right: 0;
-          height: 100%;
+          //left: 0;
+          //right: 0;
+          //height: 100%;
+          inset: 0;
         }
 
         .content {

@@ -41,13 +41,15 @@ function ChatInputBar({
   }, [scrollHeight]);
 
   useEffect(() => {
+    setCurrentDraft("");
+    adjustTextAreaHeight();
+
     const cont = scrollContainer?.current;
     if (cont == undefined || cont == null) return;
     console.log("cont:");
     console.log(cont);
 
     //checkRotateArrow();
-    adjustTextAreaHeight();
 
     if (visible) {
       cont.addEventListener("scroll", checkRotateArrow);
@@ -57,7 +59,6 @@ function ChatInputBar({
       cont.removeEventListener("scroll", checkRotateArrow);
       window.removeEventListener("resize", checkRotateArrow);
       //window.removeEventListener("orientationchange", checkRotateArrow);
-      setCurrentDraft("");
     }
   }, [visible, scrollContainer.current]);
 
@@ -160,7 +161,7 @@ function ChatInputBar({
           style={scrollBtnStyles}
           key={"scrollDownButton"}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 0.4, duration: 0.1 } }}
+          animate={{ opacity: 1, transition: { delay: 0.85, duration: 0.225 } }}
         >
           <button
             className="scrollButton"
@@ -207,7 +208,8 @@ function ChatInputBar({
           border: none;
           flex-grow: 1;
           //height: 60%;
-          min-height: 2rem;
+          min-height: 1.99rem;
+          height: 2.15rem;
           margin-left: 0.5rem;
           margin-right: 1rem;
           padding-left: 1rem;
@@ -260,8 +262,9 @@ function ChatInputBar({
   function validateInputDraft(e) {
     const newDraft = e.target.value;
     setCurrentDraft(newDraft);
+    adjustTextAreaHeight();
     //Upload
-    setCurrentDraft("");
+    //setCurrentDraft("");
   }
   function adjustTextAreaHeight() {
     if (!textArea.current) return;

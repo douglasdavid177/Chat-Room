@@ -24,7 +24,7 @@ const ChatRoomSection = (props) => {
 
       transition: {
         staggerChildren: 0.085,
-        delayChildren: 0.3,
+        delayChildren: 0.15,
       },
     },
   };

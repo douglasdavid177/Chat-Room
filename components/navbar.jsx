@@ -21,7 +21,11 @@ function NavBar({
           <img src="./menu.svg"></img>
         </button>
       </div>
-      {mainSectionKey == 2 && <h4 className="centered">Chat Room</h4>}
+      {mainSectionKey == 2 && (
+        <h4 className="centered" style={{ fontSize: "1.2rem" }}>
+          Chat Room
+        </h4>
+      )}
       <div className="loggedInStatus rightTextAlign">
         <p>{user ? user.displayName : "Not logged in."}</p>
         <button
