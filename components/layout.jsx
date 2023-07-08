@@ -81,8 +81,6 @@ function Layout(props) {
   useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
     setActualMainSectionKey(numberFromRoute(router.asPath));
-
-    console.log(user);
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
   }, []);

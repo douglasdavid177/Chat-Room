@@ -160,9 +160,9 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
 
         .panel .menuOptions h3 {
           padding: 0;
-          margin: 0.5rem 0rem;
+          margin: 0.75rem 0rem;
           font-size: 1.125rem;
-          font-size: 1.2rem;
+          //font-size: 1.2rem;
           line-height: 1.45;
           color: white;
         }
