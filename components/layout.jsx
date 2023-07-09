@@ -85,8 +85,8 @@ function Layout(props) {
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
 
-    window.document.addEventListener("scroll", FocusOnContent);
-    return window.document.removeEventListener("scroll", FocusOnContent);
+    window.addEventListener("scroll", FocusOnContent);
+    return window.removeEventListener("scroll", FocusOnContent);
   }, []);
 
   useEffect(() => {
