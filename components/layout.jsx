@@ -152,11 +152,12 @@ function Layout(props) {
   // const fLName = "Davido Douglaso";
   // const emailAd = "douglasdavid177@gmail.com";
   // const loggedIn = true;
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
   return (
     <div
       //className={"container"}
-      style={turnStuffRed ? { background: "red" } : {}}
+      style={turnStuffRed ? { background: { randomColor } } : {}}
       //onScroll={FocusOnContent}
     >
       <p>Testing...?</p>
