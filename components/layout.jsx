@@ -160,7 +160,7 @@ function Layout(props) {
     //style={turnStuffRed ? { background: `#${randomColor}` } : {}}
     //onScroll={FocusOnContent}
     >
-      <p>Testing...?</p>
+      {/* <p>Testing...?</p> */}
       <div className={"content"} ref={scrollContainer} tabIndex={-1}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
         <AnimatePresence>
