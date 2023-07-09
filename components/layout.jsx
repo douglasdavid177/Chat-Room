@@ -359,6 +359,7 @@ function Layout(props) {
         }
         html {
           -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+          touch-action: none;
         }
 
         .debugging {
@@ -367,6 +368,7 @@ function Layout(props) {
         body {
           background-color: black;
           color: white;
+          touch-action: none;
         }
 
         a {
