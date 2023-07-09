@@ -154,7 +154,7 @@ function Layout(props) {
   return (
     <div
       className={"container"}
-      style={turnStuffRed || true ? { background: "red" } : {}}
+      //style={turnStuffRed || true ? { background: "red" } : {}}
     >
       <div className={"content"} ref={scrollContainer} tabIndex={-1}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
@@ -365,6 +365,7 @@ function Layout(props) {
         body {
           background-color: black;
           color: white;
+          background: red;
         }
 
         a {
