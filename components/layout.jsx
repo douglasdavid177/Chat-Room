@@ -90,6 +90,7 @@ function Layout(props) {
       if (document.activeElement != textBoxRef.current) return;
       //setTurnStuffRed(true);
       scrollContainer.current.focus();
+      scrollContainer.current.blur();
     };
     const stopProp = (e) => {
       e.stopPropagation();
