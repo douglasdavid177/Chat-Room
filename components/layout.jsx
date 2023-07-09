@@ -47,6 +47,7 @@ function Layout(props) {
   const [fLName, setFLName] = useState("Davido Douglaso");
   const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [turnStuffRed, setTurnStuffRed] = useState(false);
 
   const [user] = useAuthState(auth);
 
@@ -83,7 +84,11 @@ function Layout(props) {
     setActualMainSectionKey(numberFromRoute(router.asPath));
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
+
+    window.document.body.addEventListener("scroll", FocusOnContent);
+    return window.document.body.removeEventListener("scroll", FocusOnContent);
   }, []);
+
   useEffect(() => {
     setMainSectionKey(numberFromRoute(router.asPath));
     if (actualMainSectionKey != 2) {
@@ -116,6 +121,11 @@ function Layout(props) {
     }
   }, [mainSectionKey]);
 
+  function FocusOnContent(e) {
+    setTurnStuffRed(true);
+    scrollContainer.current.focus();
+  }
+
   function changeKey(key) {
     let route = "";
     switch (key) {
@@ -142,7 +152,10 @@ function Layout(props) {
   // const loggedIn = true;
 
   return (
-    <div className={"container"}>
+    <div
+      className={"container"}
+      style={turnStuffRed ? { background: "red" } : {}}
+    >
       <div className={"content"} ref={scrollContainer}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
         <AnimatePresence>
