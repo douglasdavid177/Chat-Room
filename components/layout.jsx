@@ -355,6 +355,7 @@ function Layout(props) {
           width: 100%;
           overflow: hidden;
           scroll-behavior: smooth;
+          touch-action: none;
         }
         html {
           -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
