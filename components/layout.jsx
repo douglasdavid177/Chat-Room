@@ -96,10 +96,10 @@ function Layout(props) {
     };
 
     window.addEventListener("touchmove", FocusOnContent);
-    scrollContainer.current.addEventListener("touchmove", stopProp);
+    //scrollContainer.current.addEventListener("touchmove", stopProp);
     return () => {
       window.removeEventListener("touchmove", FocusOnContent);
-      scrollContainer.current.removeEventListener("touchmove", stopProp);
+      //scrollContainer.current.removeEventListener("touchmove", stopProp);
     };
   }, []);
 
