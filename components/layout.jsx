@@ -91,6 +91,7 @@ function Layout(props) {
       //setTurnStuffRed(true);
       scrollContainer.current.focus();
       scrollContainer.current.blur();
+      window.scrollBy(0, 1);
     };
     const stopProp = (e) => {
       e.stopPropagation();
