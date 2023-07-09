@@ -91,6 +91,7 @@ function Layout(props) {
       //setTurnStuffRed(true);
       scrollContainer.current.focus();
       scrollContainer.current.blur();
+      window.scrollBy(0, -1);
       window.scrollBy(0, 1);
     };
     const stopProp = (e) => {
@@ -103,6 +104,7 @@ function Layout(props) {
       window.removeEventListener("touchmove", FocusOnContent);
       //scrollContainer.current.removeEventListener("touchmove", stopProp);
     };
+    window.scrollBy(0, 1);
   }, []);
 
   useEffect(() => {
