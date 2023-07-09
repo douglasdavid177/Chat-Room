@@ -157,7 +157,7 @@ function Layout(props) {
   return (
     <div
       //className={"container"}
-      style={turnStuffRed ? { background: { randomColor } } : {}}
+      style={turnStuffRed || true ? { background: `#${randomColor}` } : {}}
       //onScroll={FocusOnContent}
     >
       <p>Testing...?</p>
