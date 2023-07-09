@@ -48,6 +48,7 @@ function Layout(props) {
   const [emailAd, setEmailAd] = useState("douglasdavid177@gmail.com");
   const [loggedIn, setLoggedIn] = useState(false);
   const [turnStuffRed, setTurnStuffRed] = useState(false);
+  const [textBoxFocus, setTextBoxFocus] = useState(false);
 
   const [user] = useAuthState(auth);
 
@@ -122,6 +123,7 @@ function Layout(props) {
   }, [mainSectionKey]);
 
   function FocusOnContent(e) {
+    if (textBoxFocus) return;
     setTurnStuffRed(true);
     scrollContainer.current.focus();
   }
@@ -250,6 +252,7 @@ function Layout(props) {
         scrollContainer={scrollContainer}
         scrollHeight={scrollHeight}
         setInputBarHeightPx={setInputBarHeightPx}
+        setTextBoxFocus={setTextBoxFocus}
         //loggedIn={loggedIn}
         user={user}
         logInOut={logInOut}
