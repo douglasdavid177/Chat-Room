@@ -153,9 +153,9 @@ function Layout(props) {
 
   return (
     <div
-      className={"container"}
-      style={turnStuffRed ? { background: "red" } : {}}
-      onScroll={FocusOnContent}
+    //className={"container"}
+    //style={turnStuffRed ? { background: "red" } : {}}
+    //onScroll={FocusOnContent}
     >
       <div className={"content"} ref={scrollContainer} tabIndex={-1}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
@@ -355,11 +355,9 @@ function Layout(props) {
           width: 100%;
           overflow: hidden;
           scroll-behavior: smooth;
-          touch-action: none;
         }
         html {
           -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
-          touch-action: none;
         }
 
         .debugging {
@@ -368,7 +366,6 @@ function Layout(props) {
         body {
           background-color: black;
           color: white;
-          touch-action: none;
         }
 
         a {
