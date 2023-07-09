@@ -86,8 +86,8 @@ function Layout(props) {
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
 
-    window.addEventListener("scroll", FocusOnContent);
-    return () => window.removeEventListener("scroll", FocusOnContent);
+    window.addEventListener("touchmove", FocusOnContent);
+    return () => window.removeEventListener("touchmove", FocusOnContent);
   }, []);
 
   useEffect(() => {
@@ -123,7 +123,7 @@ function Layout(props) {
   }, [mainSectionKey]);
 
   function FocusOnContent(e) {
-    if (document.activeElement == textBoxRef.current) return;
+    if (document.activeElement != textBoxRef.current) return;
     setTurnStuffRed(true);
     scrollContainer.current.focus();
   }
@@ -161,7 +161,7 @@ function Layout(props) {
       //onScroll={FocusOnContent}
     >
       <p>Testing...?</p>
-      <div className={"content"} ref={scrollContainer}>
+      <div className={"content"} ref={scrollContainer} tabIndex={-1}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
         <AnimatePresence>
           {showHeroImg && numberFromRoute(router.asPath) < 2 && (
