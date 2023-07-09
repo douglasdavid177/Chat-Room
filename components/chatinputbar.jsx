@@ -12,7 +12,7 @@ function ChatInputBar({
   scrollContainer,
   scrollHeight,
   setInputBarHeightPx,
-  setTextBoxFocus,
+  textBoxRef,
   loggedIn,
   user,
   logInOut,
@@ -110,12 +110,11 @@ function ChatInputBar({
             >
               <div className="inputGroup">
                 <textarea
-                  ref={textArea}
+                  ref={textBoxRef}
                   className="textInput darkblurL2"
                   value={currentDraft}
                   onChange={handleInputDraft}
                   onBlur={validateInputDraft}
-                  onFocus={() => setTextBoxFocus(true)}
                 ></textarea>
                 <button className="sendButton">S</button>
               </div>
@@ -265,17 +264,16 @@ function ChatInputBar({
     const newDraft = e.target.value;
     setCurrentDraft(newDraft);
     adjustTextAreaHeight();
-    setTextBoxFocus(false);
     //Upload
     //setCurrentDraft("");
   }
   function adjustTextAreaHeight() {
-    if (!textArea.current) return;
-    textArea.current.style.height = "2rem";
-    let newHeight = textArea.current.scrollHeight;
+    if (!textBoxRef.current) return;
+    textBoxRef.current.style.height = "2rem";
+    let newHeight = textBoxRef.current.scrollHeight;
     if (newHeight > 90) newHeight = 90;
 
-    textArea.current.style.height = `${newHeight}px`;
+    textBoxRef.current.style.height = `${newHeight}px`;
     setTextAreaHeightPx(newHeight);
     setInputBarHeightPx(newHeight + 24);
   }
