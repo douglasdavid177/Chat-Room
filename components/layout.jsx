@@ -99,12 +99,14 @@ function Layout(props) {
     };
 
     window.addEventListener("touchmove", FocusOnContent);
+    window.addEventListener("resize", () => window.scrollBy(0, 1));
     //scrollContainer.current.addEventListener("touchmove", stopProp);
+    window.scrollBy(0, 1);
+
     return () => {
       window.removeEventListener("touchmove", FocusOnContent);
       //scrollContainer.current.removeEventListener("touchmove", stopProp);
     };
-    window.scrollBy(0, 1);
   }, []);
 
   useEffect(() => {
