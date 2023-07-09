@@ -115,6 +115,10 @@ function ChatInputBar({
                   value={currentDraft}
                   onChange={handleInputDraft}
                   onBlur={validateInputDraft}
+                  onFocus={async () => {
+                    await setScrollDownBtnPointedDown(true);
+                    setScrollDownBtn(true);
+                  }}
                 ></textarea>
                 <button className="sendButton">S</button>
               </div>

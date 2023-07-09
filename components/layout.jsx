@@ -86,8 +86,21 @@ function Layout(props) {
     //myresizeObserver.observe(scrollContainer.current);
     //return () => myresizeObserver.unobserve(scrollContainer.current);
 
+    const FocusOnContent = (e) => {
+      if (document.activeElement != textBoxRef.current) return;
+      //setTurnStuffRed(true);
+      scrollContainer.current.focus();
+    };
+    const stopProp = (e) => {
+      e.stopPropagation();
+    };
+
     window.addEventListener("touchmove", FocusOnContent);
-    return () => window.removeEventListener("touchmove", FocusOnContent);
+    scrollContainer.current.addEventListener("touchmove", stopProp);
+    return () => {
+      window.removeEventListener("touchmove", FocusOnContent);
+      scrollContainer.current.removeEventListener("touchmove", stopProp);
+    };
   }, []);
 
   useEffect(() => {
@@ -121,12 +134,6 @@ function Layout(props) {
       changeKey(mainSectionKey);
     }
   }, [mainSectionKey]);
-
-  function FocusOnContent(e) {
-    if (document.activeElement != textBoxRef.current) return;
-    //setTurnStuffRed(true);
-    scrollContainer.current.focus();
-  }
 
   function changeKey(key) {
     let route = "";
