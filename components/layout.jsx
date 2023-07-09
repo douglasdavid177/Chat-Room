@@ -124,7 +124,7 @@ function Layout(props) {
 
   function FocusOnContent(e) {
     if (document.activeElement != textBoxRef.current) return;
-    setTurnStuffRed(true);
+    //setTurnStuffRed(true);
     scrollContainer.current.focus();
   }
 
@@ -156,9 +156,9 @@ function Layout(props) {
 
   return (
     <div
-      //className={"container"}
-      style={turnStuffRed ? { background: `#${randomColor}` } : {}}
-      //onScroll={FocusOnContent}
+    //className={"container"}
+    //style={turnStuffRed ? { background: `#${randomColor}` } : {}}
+    //onScroll={FocusOnContent}
     >
       <p>Testing...?</p>
       <div className={"content"} ref={scrollContainer} tabIndex={-1}>
