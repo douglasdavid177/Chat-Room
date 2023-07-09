@@ -157,7 +157,8 @@ function Layout(props) {
       style={turnStuffRed ? { background: "red" } : {}}
       //onScroll={FocusOnContent}
     >
-      <div className={"content"} ref={scrollContainer} tabIndex={-1}>
+      <p>Testing...?</p>
+      <div className={"content"} ref={scrollContainer}>
         {/* <motion.div initial={{ height: "auto" }} animate={{ height: "30vh" }}> */}
         <AnimatePresence>
           {showHeroImg && numberFromRoute(router.asPath) < 2 && (
