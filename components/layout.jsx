@@ -297,11 +297,11 @@ function Layout(props) {
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          position: fixed;
+          //position: fixed;
           //left: 0;
           //right: 0;
           //height: 100%;
-          inset: 0;
+          //inset: 0;
         }
 
         .content {
@@ -314,6 +314,7 @@ function Layout(props) {
           position: fixed;
           inset: 0;
           overflow-y: auto;
+          overflow-y: scroll;
           overflow-x: hidden;
           scrollbar-gutter: stable;
 
