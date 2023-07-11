@@ -342,6 +342,7 @@ Remember that ALL messages—sent and received—can be seen by anyone on the in
           height: 4rem;
           width: 4rem;
           //border: 0.075rem solid white;
+          overflow: hidden;
         }
         .userInfoTextHolder {
           display: flex;

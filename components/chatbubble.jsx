@@ -100,6 +100,7 @@ function ChatBubble(props) {
             position: absolute;
             bottom: -0.275rem;
             //left: -1rem;
+            overflow: hidden;
           }
           .userPic {
             height: 100%;
