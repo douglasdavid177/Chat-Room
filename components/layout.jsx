@@ -314,7 +314,6 @@ function Layout(props) {
           position: fixed;
           inset: 0;
           overflow-y: auto;
-          overflow-y: scroll;
           overflow-x: hidden;
           scrollbar-gutter: stable;
 
