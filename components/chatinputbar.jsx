@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowDown, FaArrowLeft } from "react-icons/fa";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { serverTimestamp } from "firebase/firestore";
 import Router from "next/router";
 
 function ChatInputBar({
@@ -13,6 +14,7 @@ function ChatInputBar({
   scrollHeight,
   setInputBarHeightPx,
   textBoxRef,
+  firestore,
   loggedIn,
   user,
   logInOut,
@@ -21,6 +23,7 @@ function ChatInputBar({
   const [currentDraft, setCurrentDraft] = useState("");
   const [textAreaHeightPx, setTextAreaHeightPx] = useState(32);
   const textArea = useRef(null);
+  const messagesRef = firestore.collection("messages");
 
   const checkRotateArrow = useCallback(() => {
     if (
@@ -63,6 +66,10 @@ function ChatInputBar({
     }
   }, [visible, scrollContainer.current]);
 
+  useEffect(() => {
+    adjustTextAreaHeight();
+  }, [currentDraft]);
+
   const bgStyles = {
     //Framer Motion divs don't work with styled jsx classes
     position: "fixed",
@@ -74,9 +81,9 @@ function ChatInputBar({
   };
   const scrollBtnStyles = {
     position: "fixed",
-    left: "1.5rem",
+    left: "1.2rem",
     right: 0,
-    bottom: `${textAreaHeightPx + 16}px`,
+    bottom: `${textAreaHeightPx + 13}px`,
   };
   return (
     <div>
@@ -118,9 +125,26 @@ function ChatInputBar({
                   onFocus={async () => {
                     await setScrollDownBtnPointedDown(true);
                     setScrollDownBtn(true);
+                    adjustTextAreaHeight();
                   }}
                 ></textarea>
-                <button className="sendButton">S</button>
+                <button
+                  className="sendButton"
+                  onClick={async () => {
+                    await messagesRef.add({
+                      text: currentDraft,
+                      createdAt: serverTimestamp(),
+                      uid: user.uid,
+                      photoUrl: user.photoURL,
+                      displayName: user.displayName,
+                    });
+                    setCurrentDraft("");
+
+                    //adjustTextAreaHeight();
+                  }}
+                >
+                  S
+                </button>
               </div>
             </motion.div>
           ) : (
@@ -224,6 +248,9 @@ function ChatInputBar({
           border-radius: 1.25rem 1.25rem;
           overflow-wrap: break-word;
           resize: none;
+          text-wrap: nowrap;
+          overflow-x: hidden;
+          //line-height: 1.25rem;
         }
         .sendButton {
           //all: unset;
@@ -261,25 +288,36 @@ function ChatInputBar({
   function handleInputDraft(e) {
     const bar = e.target;
     const newDraft = bar.value;
-    adjustTextAreaHeight();
-    setCurrentDraft(newDraft);
+    //setCurrentDraft(newDraft);
+    //adjustTextAreaHeight();
+    setCurrentDraft(removeLinebreaks(newDraft));
   }
   function validateInputDraft(e) {
     const newDraft = e.target.value;
-    setCurrentDraft(newDraft);
-    adjustTextAreaHeight();
+    setCurrentDraft(removeLinebreaks(newDraft));
+    adjustTextAreaHeight(false);
     //Upload
     //setCurrentDraft("");
   }
-  function adjustTextAreaHeight() {
+  function adjustTextAreaHeight(grow = true) {
     if (!textBoxRef.current) return;
     textBoxRef.current.style.height = "2rem";
-    let newHeight = textBoxRef.current.scrollHeight;
-    if (newHeight > 90) newHeight = 90;
+    if (grow) {
+      let newHeight = textBoxRef.current.scrollHeight;
+      if (newHeight > 90) newHeight = 90;
 
-    textBoxRef.current.style.height = `${newHeight}px`;
-    setTextAreaHeightPx(newHeight);
-    setInputBarHeightPx(newHeight + 24);
+      textBoxRef.current.style.height = `${newHeight}px`;
+      setTextAreaHeightPx(newHeight);
+      setInputBarHeightPx(newHeight + 24);
+    } else {
+      textBoxRef.current.style.height = "35px";
+
+      setTextAreaHeightPx(35);
+      setInputBarHeightPx(59);
+    }
+  }
+  function removeLinebreaks(str) {
+    return str.replace(/[\r\n]+/gm, "");
   }
 }
 

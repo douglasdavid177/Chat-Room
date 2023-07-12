@@ -267,6 +267,7 @@ function Layout(props) {
         scrollHeight={scrollHeight}
         setInputBarHeightPx={setInputBarHeightPx}
         textBoxRef={textBoxRef}
+        firestore={firestore}
         //loggedIn={loggedIn}
         user={user}
         logInOut={logInOut}

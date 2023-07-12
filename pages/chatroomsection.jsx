@@ -7,11 +7,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const ChatRoomSection = (props) => {
   const messagesRef = props.firestore.collection("messages");
-  const query = messagesRef.orderBy("createdAt").limit(30);
+  const query = messagesRef.orderBy("createdAt", "desc").limit(30);
   const [messages] = useCollectionData(query, { idField: "id" });
   const [scrollTop, setScrollTop] = useState(0);
 
   const bottomAnchorRef = useRef(null);
+
+  const messagesOrdered = messages?.reverse();
 
   // useEffect(() => {
   //   console.log(messages);
@@ -43,7 +45,7 @@ const ChatRoomSection = (props) => {
     setTimeout(() => {
       bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
-  }, [messages]);
+  }, [messages, props.user]);
 
   useEffect(() => {
     if (!props.scrollDownBtn) return;
@@ -70,7 +72,7 @@ const ChatRoomSection = (props) => {
   return (
     <div
       className="chatroomSection"
-      style={{ paddingBottom: `${props.inputBarHeightPx + 24}px` }}
+      style={{ paddingBottom: `${props.inputBarHeightPx + 27}px` }}
     >
       <AnimatePresence>
         {scrollTop < -32 && (
@@ -118,13 +120,17 @@ const ChatRoomSection = (props) => {
 
             <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
-            {messages.map((msg, ind) => (
-              <ChatBubble
-                key={msg.createdAt.toDate().toString()}
-                message={msg}
-                user={props.user}
-              />
-            ))}
+            {messagesOrdered.map((msg, ind) =>
+              msg.createdAt ? (
+                <ChatBubble
+                  key={msg.createdAt.toDate().toString()}
+                  message={msg}
+                  user={props.user}
+                />
+              ) : (
+                ""
+              )
+            )}
           </motion.div>
         ) : (
           <motion.div
@@ -146,7 +152,7 @@ const ChatRoomSection = (props) => {
         .chatroomSection {
           //background: red;
           //flex-grow: 1;
-          padding-top: 4rem;
+          padding-top: 4.25rem;
           // Padding bottom applied as inline style
           margin-top: 0;
           display: flex;
