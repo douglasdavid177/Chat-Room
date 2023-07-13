@@ -88,7 +88,7 @@ const ChatRoomSection = (props) => {
             </p>
           </motion.div>
         )}
-        {messagesOrdered ? (
+        {messages ? (
           <motion.div
             key={"room"}
             variants={container}
@@ -120,7 +120,7 @@ const ChatRoomSection = (props) => {
 
             <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
-            {messagesOrdered.map((msg, ind) =>
+            {messages.map((msg, ind) =>
               msg.createdAt ? (
                 <ChatBubble
                   key={msg.createdAt.toDate().toString()}
