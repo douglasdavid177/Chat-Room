@@ -13,7 +13,7 @@ const ChatRoomSection = (props) => {
 
   const bottomAnchorRef = useRef(null);
 
-  const messagesOrdered = messages ? messages.reverse() : null;
+  //const messagesOrdered = messages ? messages.reverse() : null;
 
   // useEffect(() => {
   //   console.log(messages);
