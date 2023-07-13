@@ -13,7 +13,7 @@ const ChatRoomSection = (props) => {
 
   const bottomAnchorRef = useRef(null);
 
-  const messagesOrdered = messages?.reverse();
+  const messagesOrdered = messages ? messages.reverse() : null;
 
   // useEffect(() => {
   //   console.log(messages);
@@ -88,7 +88,7 @@ const ChatRoomSection = (props) => {
             </p>
           </motion.div>
         )}
-        {messages ? (
+        {messagesOrdered ? (
           <motion.div
             key={"room"}
             variants={container}
