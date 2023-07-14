@@ -67,7 +67,7 @@ function ChatInputBar({
   }, [visible, scrollContainer.current]);
 
   useEffect(() => {
-    adjustTextAreaHeight();
+    adjustTextAreaHeight(currentDraft.length > 0);
   }, [currentDraft]);
 
   const bgStyles = {
@@ -124,13 +124,14 @@ function ChatInputBar({
                   onBlur={validateInputDraft}
                   onFocus={async () => {
                     await setScrollDownBtnPointedDown(true);
-                    setScrollDownBtn(true);
+                    await setScrollDownBtn(true);
                     adjustTextAreaHeight();
                   }}
                 ></textarea>
                 <button
                   className="sendButton"
                   onClick={async () => {
+                    if (currentDraft == "") return;
                     await messagesRef.add({
                       text: currentDraft,
                       createdAt: serverTimestamp(),
@@ -248,7 +249,7 @@ function ChatInputBar({
           border-radius: 1.25rem 1.25rem;
           overflow-wrap: break-word;
           resize: none;
-          text-wrap: nowrap;
+          //text-wrap: nowrap;
           overflow-x: hidden;
           //line-height: 1.25rem;
         }
@@ -264,6 +265,7 @@ function ChatInputBar({
           display: flex;
           justify-content: center;
           align-items: center;
+          cursor: pointer;
         }
 
         .scrollButton {

@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 function ChatBubble(props) {
   //console.log(props.message.createdAt);
+  useEffect(() => {
+    console.log(props.message.createdAt.seconds);
+  }, []);
   const fromUser = props.message?.forceFromUser
     ? true
     : props.user && props.user.uid == props.message?.uid;

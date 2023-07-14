@@ -7,13 +7,14 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const ChatRoomSection = (props) => {
   const messagesRef = props.firestore.collection("messages");
-  const query = messagesRef.orderBy("createdAt", "desc").limit(30);
+  const query = messagesRef.orderBy("createdAt", "desc").limit(9);
   const [messages] = useCollectionData(query, { idField: "id" });
   const [scrollTop, setScrollTop] = useState(0);
 
   const bottomAnchorRef = useRef(null);
 
-  //const messagesOrdered = messages ? messages.reverse() : null;
+  //const messagesOrdered = messages?.toReversed();
+  const messagesOrdered = messages ? messages.toReversed() : null;
 
   // useEffect(() => {
   //   console.log(messages);
@@ -30,6 +31,11 @@ const ChatRoomSection = (props) => {
       },
     },
   };
+
+  // useEffect(() => {
+  //   if (!messages) return;
+  //   //messages.reverse();
+  // }, [messages]);
 
   useEffect(() => {
     props.scrollContainer.current.addEventListener("scroll", checkScroll);
@@ -88,7 +94,7 @@ const ChatRoomSection = (props) => {
             </p>
           </motion.div>
         )}
-        {messages ? (
+        {messagesOrdered ? (
           <motion.div
             key={"room"}
             variants={container}
@@ -120,7 +126,7 @@ const ChatRoomSection = (props) => {
 
             <ChatBubble fromUser={false}>heres some message text</ChatBubble> */}
 
-            {messages.map((msg, ind) =>
+            {messagesOrdered.map((msg, ind) =>
               msg.createdAt ? (
                 <ChatBubble
                   key={msg.createdAt.toDate().toString()}
