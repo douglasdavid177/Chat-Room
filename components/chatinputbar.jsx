@@ -191,7 +191,7 @@ function ChatInputBar({
           style={scrollBtnStyles}
           key={"scrollDownButton"}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 0.85, duration: 0.225 } }}
+          animate={{ opacity: 1, transition: { delay: 1, duration: 0.225 } }}
         >
           <button
             className="scrollButton"
