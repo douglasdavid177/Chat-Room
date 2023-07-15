@@ -50,7 +50,7 @@ const ChatRoomSection = (props) => {
 
     setTimeout(() => {
       bottomAnchorRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
+    }, 100);
   }, [messages, props.user]);
 
   useEffect(() => {
