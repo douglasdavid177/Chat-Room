@@ -1,14 +1,6 @@
 import firebase from "firebase/compat/app";
 //import "firebase/compat/auth";
-function NavBar({
-  setNavPanelOpen,
-  loggedIn,
-  fLName,
-  mainSectionKey,
-  user,
-  auth,
-  logInOut,
-}) {
+function NavBar({ setNavPanelOpen, mainSectionKey, user, logInOut }) {
   return (
     <div className="navbar darkblur transparentBG">
       <div className={"hamburgerHolder"}>

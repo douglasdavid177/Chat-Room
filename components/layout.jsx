@@ -274,12 +274,8 @@ function Layout(props) {
       />
       <NavBar
         setNavPanelOpen={setNavPanelOpen}
-        //loggedIn={loggedIn}
         user={user}
-        fLName={fLName}
-        emailAd={emailAd}
         mainSectionKey={mainSectionKey}
-        auth={auth}
         logInOut={logInOut}
       />
       <NavPanel
@@ -287,10 +283,7 @@ function Layout(props) {
         setIsOpen={setNavPanelOpen}
         currentSectionKey={mainSectionKey}
         setSectionKey={setMainSectionKey}
-        //loggedIn={loggedIn}
         user={user}
-        fLName={fLName}
-        emailAd={emailAd}
         logInOut={logInOut}
       />
       <style jsx>{`

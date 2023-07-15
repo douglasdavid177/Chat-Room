@@ -12,9 +12,6 @@ const NavPanel = ({
   setIsOpen,
   currentSectionKey,
   setSectionKey,
-  loggedIn,
-  fLName,
-  emailAd,
   user,
   logInOut,
 }) => {
