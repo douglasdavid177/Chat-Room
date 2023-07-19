@@ -316,14 +316,15 @@ function ChatInputBar({
 
   async function sendButtonPress() {
     if (currentDraft == "") return;
+    const draft = currentDraft;
+    setCurrentDraft("");
     await messagesRef.add({
-      text: currentDraft,
+      text: draft,
       createdAt: serverTimestamp(),
       uid: user.uid,
       photoUrl: user.photoURL,
       displayName: user.displayName,
     });
-    setCurrentDraft("");
   }
 }
 
