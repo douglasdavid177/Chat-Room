@@ -125,6 +125,7 @@ function ChatInputBar({
                   onKeyDown={(e) => {
                     if (e.key == "Enter") {
                       e.preventDefault();
+                      sendButtonPress();
                     }
                   }}
                   onFocus={async () => {
