@@ -122,28 +122,19 @@ function ChatInputBar({
                   value={currentDraft}
                   onChange={handleInputDraft}
                   onBlur={validateInputDraft}
+                  onKeyDown={(e) => {
+                    if (e.key == "Enter") {
+                      e.preventDefault();
+                    }
+                  }}
                   onFocus={async () => {
                     await setScrollDownBtnPointedDown(true);
                     await setScrollDownBtn(true);
                     adjustTextAreaHeight();
                   }}
+                  enterkeyhint="send"
                 ></textarea>
-                <button
-                  className="sendButton"
-                  onClick={async () => {
-                    if (currentDraft == "") return;
-                    await messagesRef.add({
-                      text: currentDraft,
-                      createdAt: serverTimestamp(),
-                      uid: user.uid,
-                      photoUrl: user.photoURL,
-                      displayName: user.displayName,
-                    });
-                    setCurrentDraft("");
-
-                    //adjustTextAreaHeight();
-                  }}
-                >
+                <button className="sendButton" onClick={sendButtonPress}>
                   S
                 </button>
               </div>
@@ -320,6 +311,18 @@ function ChatInputBar({
   }
   function removeLinebreaks(str) {
     return str.replace(/[\r\n]+/gm, "");
+  }
+
+  async function sendButtonPress() {
+    if (currentDraft == "") return;
+    await messagesRef.add({
+      text: currentDraft,
+      createdAt: serverTimestamp(),
+      uid: user.uid,
+      photoUrl: user.photoURL,
+      displayName: user.displayName,
+    });
+    setCurrentDraft("");
   }
 }
 
