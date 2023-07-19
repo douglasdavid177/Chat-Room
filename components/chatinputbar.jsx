@@ -22,6 +22,7 @@ function ChatInputBar({
   const [targRot, setTargRot] = useState(90);
   const [currentDraft, setCurrentDraft] = useState("");
   const [textAreaHeightPx, setTextAreaHeightPx] = useState(32);
+  const [currentlySending, setCurrentlySending] = useState(false);
   const textArea = useRef(null);
   const messagesRef = firestore.collection("messages");
 
@@ -71,7 +72,7 @@ function ChatInputBar({
   }, [currentDraft]);
 
   const bgStyles = {
-    //Framer Motion divs don't work with styled jsx classes
+    //Framer Motion divs don't work with styled jsx classes that aren't global
     position: "fixed",
     left: 0,
     right: 0,
@@ -133,11 +134,22 @@ function ChatInputBar({
                     await setScrollDownBtn(true);
                     adjustTextAreaHeight();
                   }}
-                  enterkeyhint="send"
+                  enterKeyHint="send"
                 ></textarea>
                 <button className="sendButton" onClick={sendButtonPress}>
                   S
                 </button>
+                <AnimatePresence>
+                  {currentlySending && (
+                    <motion.div
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p className="sendingTxt">sending...</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           ) : (
@@ -220,6 +232,7 @@ function ChatInputBar({
           align-items: center;
           justify-content: space-around;
           padding: 0 0.5rem;
+          position: relative;
         }
         .textInput {
           background-color: rgb(40 40 40 /0.8);
@@ -275,6 +288,13 @@ function ChatInputBar({
           font-weight: bold;
           cursor: pointer;
         }
+        .sendingTxt {
+          position: absolute;
+          right: 0;
+          top: -2.15rem;
+          padding: 0.2rem;
+          backdrop-filter: blur(0.9rem);
+        }
       `}</style>
     </div>
   );
@@ -317,6 +337,7 @@ function ChatInputBar({
   async function sendButtonPress() {
     if (currentDraft == "") return;
     const draft = currentDraft;
+    setCurrentlySending(true);
     setCurrentDraft("");
     await messagesRef.add({
       text: draft,
@@ -325,6 +346,7 @@ function ChatInputBar({
       photoUrl: user.photoURL,
       displayName: user.displayName,
     });
+    setCurrentlySending(false);
   }
 }
 

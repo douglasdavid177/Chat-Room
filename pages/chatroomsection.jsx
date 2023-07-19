@@ -7,7 +7,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const ChatRoomSection = (props) => {
   const messagesRef = props.firestore.collection("messages");
-  const query = messagesRef.orderBy("createdAt", "desc").limit(20);
+  const query = messagesRef.orderBy("createdAt", "desc").limit(30);
   const [messages] = useCollectionData(query, { idField: "id" });
   const [scrollTop, setScrollTop] = useState(0);
 
