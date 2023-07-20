@@ -294,6 +294,7 @@ function ChatInputBar({
           top: -2.15rem;
           padding: 0.2rem;
           backdrop-filter: blur(0.9rem);
+          color: rgba(130 130 130);
         }
       `}</style>
     </div>
@@ -337,8 +338,8 @@ function ChatInputBar({
   async function sendButtonPress() {
     if (currentDraft == "") return;
     const draft = currentDraft;
-    setCurrentlySending(true);
     setCurrentDraft("");
+    setCurrentlySending(true);
     await messagesRef.add({
       text: draft,
       createdAt: serverTimestamp(),
