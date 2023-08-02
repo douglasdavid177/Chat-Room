@@ -30,7 +30,9 @@ const AboutSection = (props) => {
       </p>
       <p>
         The{" "}
-        <a href="https://github.com/douglasdavid177/Chat-Room">source code</a>{" "}
+        <a href="https://github.com/douglasdavid177/Chat-Room" target="_blank">
+          source code
+        </a>{" "}
         can be viewed online on GitHub.
       </p>
       <LinkButton setNavPanelOpen={props.setNavPanelOpen} />
