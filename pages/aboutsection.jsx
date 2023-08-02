@@ -37,8 +37,9 @@ const AboutSection = (props) => {
         >
           source code
         </a>{" "}
-        can be viewed online on GitHub.
+        for this project can be viewed online on GitHub.
       </p>
+      <div style={{ height: "10px" }}></div>
       <LinkButton setNavPanelOpen={props.setNavPanelOpen} />
       <br />
       <style jsx>{`
