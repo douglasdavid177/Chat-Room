@@ -30,7 +30,11 @@ const AboutSection = (props) => {
       </p>
       <p>
         The{" "}
-        <a href="https://github.com/douglasdavid177/Chat-Room" target="_blank">
+        <a
+          href="https://github.com/douglasdavid177/Chat-Room"
+          target="_blank"
+          rel="noopener"
+        >
           source code
         </a>{" "}
         can be viewed online on GitHub.
