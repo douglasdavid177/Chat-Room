@@ -31,7 +31,7 @@ const AboutSection = (props) => {
       <p>
         The{" "}
         <a href="https://github.com/douglasdavid177/Chat-Room">source code</a>{" "}
-        can be viewed on GitHub.
+        can be viewed online on GitHub.
       </p>
       <LinkButton setNavPanelOpen={props.setNavPanelOpen} />
       <br />
