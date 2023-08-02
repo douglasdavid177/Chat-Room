@@ -33,7 +33,7 @@ const AboutSection = (props) => {
         <a
           href="https://github.com/douglasdavid177/Chat-Room"
           target="_blank"
-          rel="noopener"
+          rel="noreferrer"
         >
           source code
         </a>{" "}
