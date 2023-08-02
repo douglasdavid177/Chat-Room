@@ -61,6 +61,7 @@ const HomeSection = (props) => {
               setNavPanelOpen={props.setNavPanelOpen}
               delayAmt={0.35}
             />
+            <br />
           </div>
         </AnimatePresence>
       </div>

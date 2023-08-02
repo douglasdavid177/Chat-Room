@@ -382,8 +382,11 @@ function Layout(props) {
         }
 
         a {
-          color: inherit;
+          color: var(--main-purple-on-black);
           text-decoration: none;
+        }
+        a:active {
+          text-decoration: underline;
         }
 
         * {
