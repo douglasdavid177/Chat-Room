@@ -24,9 +24,9 @@ const AboutSection = (props) => {
       </p>
       <p>
         The back-end half of this application was made using a Firebase Cloud
-        Firestore Database. It’s a noSQL document oriented database that scales
-        horizontally with ease. Users can sign in using a Google account, and
-        must be signed in to send messages.{" "}
+        Firestore Database. It&apos;s a noSQL document oriented database that
+        scales horizontally with ease. Users can sign in using a Google account,
+        and must be signed in to send messages.{" "}
       </p>
       <p>
         The{" "}
